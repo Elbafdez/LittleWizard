@@ -6,7 +6,7 @@ using UnityEngine.Timeline;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    private float speed = 2f;
+    [SerializeField] private float speed;
     [SerializeField] private float minDistance;
 
     // Start is called before the first frame update

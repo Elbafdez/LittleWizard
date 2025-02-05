@@ -1085,6 +1085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1142345357}
+  speed: 1.8
   minDistance: 1
 --- !u!50 &1389981898
 Rigidbody2D:
