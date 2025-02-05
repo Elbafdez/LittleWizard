@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 2.5f;
     private Rigidbody2D rbplayer;
     private Vector2 moveImput;
+    private Vector2 lastMoveDirection = Vector2.down;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +24,20 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         moveImput = new Vector2 (moveX, moveY).normalized;
 
+        // Si el personaje se está moviendo, actualizamos la última dirección
+        if (moveImput != Vector2.zero)
+        {
+            lastMoveDirection = moveImput;
+        }
+
+        // Pasar valores al Animator
         playeranimator.SetFloat("Horizontal", moveX);
         playeranimator.SetFloat("Vertical", moveY);
         playeranimator.SetFloat("Speed", moveImput.sqrMagnitude);
+
+        // Guardar la última dirección en la que se movió para el idle
+        playeranimator.SetFloat("LastMoveX", lastMoveDirection.x);
+        playeranimator.SetFloat("LastMoveY", lastMoveDirection.y);
     }
 
     private void FixedUpdate()
