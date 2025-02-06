@@ -394,8 +394,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1012553031}
   - component: {fileID: 1012553030}
+  - component: {fileID: 1012553032}
   m_Layer: 0
-  m_Name: Room1
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,6 +469,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012553032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012553029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70470b7f5f5c3654bb17e349e90433de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePuertasCerradas: {fileID: -1555722462, guid: 15ef47c484b06f24e8a81e6825ed1494, type: 3}
+  spritePuertasAbiertas: {fileID: 263983371, guid: 15ef47c484b06f24e8a81e6825ed1494, type: 3}
 --- !u!1 &1041702452
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +617,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041702452}
   m_CullTransparentMesh: 1
+--- !u!1 &1064305802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064305803}
+  - component: {fileID: 1064305804}
+  m_Layer: 8
+  m_Name: Scepter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064305803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064305802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.375, y: -0.026, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1142345357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1064305804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064305802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435a2960fb38ff54ca55fc70b4f7db36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicBall: {fileID: 2457146205841522513, guid: d74e131cd76775e48971a694441b5f1e, type: 3}
+  scepter: {fileID: 1064305803}
+  velocidadBala: 4
+  fireRate: 0.4
 --- !u!1 &1142345356
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +679,7 @@ GameObject:
   - component: {fileID: 1142345359}
   - component: {fileID: 1142345361}
   - component: {fileID: 1142345362}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +698,8 @@ Transform:
   m_LocalPosition: {x: -2.86, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1064305803}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1142345358
@@ -963,7 +1027,7 @@ GameObject:
   - component: {fileID: 1389981896}
   - component: {fileID: 1389981898}
   - component: {fileID: 1389981897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1142345357}
-  speed: 1.8
+  speed: 1.5
   minDistance: 1
 --- !u!50 &1389981898
 Rigidbody2D:
