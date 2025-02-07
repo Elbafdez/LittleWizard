@@ -215,7 +215,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 6948f7dc4d4e63f4480fe8e2251a6b69, type: 2}
     m_Threshold: -1
     m_Position: {x: -1, y: 0}
-    m_TimeScale: 0.01
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
@@ -223,7 +223,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 1d2c94c221b33ca42a2ba85b331f5ede, type: 2}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
-    m_TimeScale: 0.01
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
@@ -231,7 +231,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: e2e59cb9e784bb44781f0281bb91e4cd, type: 2}
     m_Threshold: 3
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 0.01
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
@@ -239,7 +239,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 1392f9e4b36a9754f875006b18a08492, type: 2}
     m_Threshold: 5
     m_Position: {x: 0, y: -1}
-    m_TimeScale: 0.01
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0

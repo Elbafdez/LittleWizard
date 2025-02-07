@@ -6,15 +6,18 @@ using UnityEngine.Timeline;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 1.5f;
     [SerializeField] private float minDistance;
 
-    // Start is called before the first frame update
+    private Animator animator;
+    private Rigidbody2D rb;
+    private Vector2 moveDirection;
     void Start()
     {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Follow();
@@ -22,12 +25,21 @@ public class EnemyMovement : MonoBehaviour
 
     private void Follow()
     {
+        Vector2 direction = (player.position - transform.position).normalized;
+
         if (Vector2.Distance(transform.position, player.position) > minDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            moveDirection = direction;
+            rb.velocity = moveDirection * speed;  // Usamos Rigidbody para mover al enemigo
+
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
+            animator.SetBool("IsMoving", true);
         }
         else
         {
+            rb.velocity = Vector2.zero;  // Detener movimiento
+            animator.SetBool("IsMoving", false);
             Attack();
         }
     }

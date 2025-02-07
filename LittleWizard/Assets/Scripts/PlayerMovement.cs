@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Animator playeranimator;
-    private float speed = 2.5f;
+    [SerializeField] private float speed = 2f;
     private Rigidbody2D rbplayer;
     private Vector2 moveImput;
     private Vector2 lastMoveDirection = Vector2.down;
