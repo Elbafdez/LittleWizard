@@ -6,17 +6,20 @@ using UnityEngine.Timeline;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float speed = 1.5f;
-    [SerializeField] private float minDistance;
-    private int lives = 2;
+    [SerializeField] private RoomGenerator roomGenerator;
+    private float speed = 1.5f;
+    private float minDistance = 0.6f;
+    private int lives = 3;
 
     private Animator animator;
     private Rigidbody2D rb;
     private Vector2 moveDirection;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        // roomGenerator = FindObjectOfType<RoomGenerator>(); // Obtener la referencia al script RoomGenerator
     }
 
     void Update()
@@ -25,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (lives <= 0)
         {
+            roomGenerator.EnemigoDerrotado();   // Llamar al método EnemigoDerrotado
             Destroy(gameObject);
         }
     }
@@ -36,24 +40,23 @@ public class EnemyMovement : MonoBehaviour
                 lives--;
             }
         }
-    
 
     private void Follow()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
+        
+        // minDistance = player.position.x - 0.5f;
 
         if (Vector2.Distance(transform.position, player.position) > minDistance)
-        {
-            moveDirection = direction;
-            rb.velocity = moveDirection * speed;  // Usamos Rigidbody para mover al enemigo
+        {            
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
+            moveDirection = player.position - transform.position;
             animator.SetFloat("Horizontal", moveDirection.x);
             animator.SetFloat("Vertical", moveDirection.y);
             animator.SetBool("IsMoving", true);
         }
         else
         {
-            rb.velocity = Vector2.zero;  // Detener movimiento
             animator.SetBool("IsMoving", false);
             Attack();
         }

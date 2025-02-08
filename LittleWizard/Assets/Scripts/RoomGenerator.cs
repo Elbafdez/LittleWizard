@@ -20,7 +20,7 @@ public class RoomGenerator : MonoBehaviour
     // Método que se llama cuando se genera una nueva habitación
     public void ResetearHabitacion()
     {
-        enemigosRestantes = Random.Range(3, 6); // Número aleatorio de enemigos en la habitación
+        enemigosRestantes = 1; // Número aleatorio de enemigos en la habitación ¡¡¡¡¡¡¡¡CAMBIAR!!!!!!
         spriteRenderer.sprite = spritePuertasCerradas; // Restaurar sprite inicial
     }
 
