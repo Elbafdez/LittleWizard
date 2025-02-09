@@ -32,9 +32,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
         {
-            if (collision.gameObject.tag == "MagicBall")
+            if (other.gameObject.tag == "MagicBall")
             {
                 lives--;
             }

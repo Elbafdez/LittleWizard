@@ -694,8 +694,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magicBall: {fileID: 2457146205841522513, guid: d74e131cd76775e48971a694441b5f1e, type: 3}
   scepter: {fileID: 1064305803}
-  velocidadBala: 4
-  fireRate: 0.4
 --- !u!1 &1142345356
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,7 +776,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 600339625, guid: a4b650d14a7d9a64b95c74206f9720b2, type: 3}
+  m_Sprite: {fileID: -1217681923, guid: a4b650d14a7d9a64b95c74206f9720b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1096,7 +1094,7 @@ GameObject:
   - component: {fileID: 1389981899}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

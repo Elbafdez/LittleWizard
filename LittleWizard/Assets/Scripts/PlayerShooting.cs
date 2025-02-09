@@ -5,8 +5,8 @@ public class PlayerShooting : MonoBehaviour
 {
     public GameObject magicBall;
     public Transform scepter;
-    public float velocidadBala;
-    public float fireRate;
+    private float magicBallSpeed = 2f;
+    private float fireRate = 0.8f;
 
     private float nextFireTime = 0f;
 
@@ -27,6 +27,6 @@ public class PlayerShooting : MonoBehaviour
         Vector3 direccion = (mousePosition - scepter.position).normalized;  // Obtenemos la dirección hacia la que apuntamos
 
         GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la bala
-        bala.GetComponent<Rigidbody2D>().velocity = direccion * velocidadBala;  // Aplicamos velocidad a la bala
+        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la bala
     }
 }
