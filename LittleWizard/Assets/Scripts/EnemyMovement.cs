@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        // roomGenerator = FindObjectOfType<RoomGenerator>(); // Obtener la referencia al script RoomGenerator
     }
 
     void Update()

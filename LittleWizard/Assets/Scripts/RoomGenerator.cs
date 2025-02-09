@@ -6,7 +6,6 @@ public class RoomGenerator : MonoBehaviour
 {
     public Sprite spritePuertasCerradas; // Sprite inicial de la habitación (puertas cerradas)
     public Sprite spritePuertasAbiertas; // Sprite de la habitación cuando se eliminan todos los enemigos
-
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
 
