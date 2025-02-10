@@ -12,13 +12,14 @@ public class EnemyMovement : MonoBehaviour
     private int lives = 3;
 
     private Animator animator;
-    private Rigidbody2D rb;
     private Vector2 moveDirection;
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        roomGenerator = FindObjectOfType<RoomGenerator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     void Update()
