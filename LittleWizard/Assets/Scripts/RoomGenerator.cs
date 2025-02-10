@@ -5,8 +5,8 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
     //-------------------------------- HABITACION ------------------------------------------------
-    public Sprite spritePuertasCerradas; // Sprite inicial de la habitación (puertas cerradas)
-    public Sprite spritePuertasAbiertas; // Sprite de la habitación cuando se eliminan todos los enemigos
+    public Sprite spritePuertasCerradas;
+    public Sprite spritePuertasAbiertas;
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
 
@@ -17,8 +17,8 @@ public class RoomGenerator : MonoBehaviour
     private int finalMinEnemies = 6; // Min enemigos en habitaciones avanzadas
     private int finalMaxEnemies = 8; // Max enemigos en habitaciones avanzadas
     private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
-    private int currentRoom = 1; // Número de habitación actual
-    private int enemyCount;
+    private int currentRoom = 0; // Número de habitación actual
+    private int nEnemies;
     private float spawnRadius = 1.5f; // Distancia mínima entre enemigos
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
 
@@ -27,9 +27,35 @@ public class RoomGenerator : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        ResetearHabitacion(); // Se inicia con el sprite de puertas cerradas y enemigos nuevos
+        NewRoom(); // Se inicia con el sprite de puertas cerradas y enemigos nuevos
 
-        SpawnEnemies(enemyCount);          // Spawnear enemigos
+        SpawnEnemies(nEnemies);   // Spawnear enemigos
+    }
+
+    //-------------------------------- HABITACION ------------------------------------------------
+
+    public void NewRoom()    // Método que resetea la habitación
+    {   
+        Debug.Log("N.Habitación: " + currentRoom);
+
+        currentRoom ++; // Incrementar el número de habitación
+
+        nEnemies = GetEnemyCount(); // Obtener el número de enemigos a spawnear
+        enemigosRestantes = nEnemies; // Asignar el número de enemigos restantes
+        Debug.Log("N.Enemigos: " + nEnemies);
+
+        spriteRenderer.sprite = spritePuertasCerradas; // Restaurar sprite inicial (Puertas cerradas)
+    }
+
+    public void EnemigoDerrotado()      // Método que se llama cuando un enemigo es derrotado
+    {
+        enemigosRestantes--;
+
+        if (enemigosRestantes <= 0)
+        {
+            Debug.Log("Todos los enemigos derrotados");
+            spriteRenderer.sprite = spritePuertasAbiertas;
+        }
     }
 
     //-------------------------------- ENEMIGOS ------------------------------------------------
@@ -40,31 +66,27 @@ public class RoomGenerator : MonoBehaviour
         int dynamicMin = (int)Mathf.Lerp(startMinEnemies, finalMinEnemies, (float)currentRoom / roomsUntilMax);
         int dynamicMax = (int)Mathf.Lerp(startMaxEnemies, finalMaxEnemies, (float)currentRoom / roomsUntilMax);
 
-        // Convertir a valores enteros y asegurarse de que el mínimo no supere el máximo
-        int minEnemies = dynamicMin;
-        int maxEnemies = dynamicMax;
-
-        return Random.Range(minEnemies, maxEnemies + 1); 
+        return Random.Range(dynamicMin, dynamicMax + 1);
     }
 
-    private void SpawnEnemies(int enemyCount)    // Método que spawneará enemigos en la habitación -----------------------------------------------------------------------------------
+    private void SpawnEnemies(int nEnemies)    // Método que spawneará enemigos en la habitación
     {
         int spawnedEnemies = 0;
         int maxAttempts = 100; // Numero max. de busqueda de pt. de spawn (para evitar bucles infinitos)
         int attempts = 0;
 
-        while (spawnedEnemies < enemyCount && attempts < maxAttempts)
+        while (spawnedEnemies < nEnemies && attempts < maxAttempts)
         {
             attempts++;
 
             // Generar una posición aleatoria dentro de los límites
-            Vector2 randomPosition = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
+            Vector2 spawnPoint = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
 
             // Verificar si la posición es válida (sin solapamiento)
-            if (IsValidSpawn(randomPosition))
+            if (IsValidSpawn(spawnPoint))
             {
-                spawnPositions.Add(randomPosition); // Guardar la posición
-                Instantiate(enemyPrefab, randomPosition, Quaternion.identity); // Spawnear enemigo
+                spawnPositions.Add(spawnPoint); // Guardar la posición
+                Instantiate(enemyPrefab, spawnPoint, Quaternion.identity); // Spawnear enemigo
                 spawnedEnemies++;
             }
         }
@@ -80,30 +102,5 @@ public class RoomGenerator : MonoBehaviour
             }
         }
         return true;
-    }
-    
-    //-------------------------------- HABITACION ------------------------------------------------
-
-    public void ResetearHabitacion()    // Método que resetea la habitación
-    {   
-        enemyCount = GetEnemyCount(); // Obtener el número de enemigos a spawnear --------------------------------------------------------------------------------------------
-        Debug.Log("Nº de enemigos: " + enemyCount);
-        enemigosRestantes = enemyCount; // Asignar el número de enemigos restantes
-        spriteRenderer.sprite = spritePuertasCerradas; // Restaurar sprite inicial
-    }
-
-    public void EnemigoDerrotado()      // Método que se llama cuando un enemigo es derrotado
-    {
-        enemigosRestantes--;
-
-        if (enemigosRestantes <= 0)
-        {
-            AbrirPuertas();
-        }
-    }
-
-    private void AbrirPuertas()     // Método que cambia el sprite de la habitación a puertas abiertas
-    {
-        spriteRenderer.sprite = spritePuertasAbiertas;
     }
 }
