@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomGenerator : MonoBehaviour
@@ -11,6 +12,7 @@ public class RoomGenerator : MonoBehaviour
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
 
     //-------------------------------- ENEMIGOS ------------------------------------------------
+    [SerializeField] private Transform player;  // Referencia al jugador
     [SerializeField] private GameObject enemyPrefab; // Prefab del enemigo
     private int startMinEnemies = 1; // Min enemigos en la 1ra habitación
     private int startMaxEnemies = 2; // Max enemigos en la 1ra habitación
@@ -19,13 +21,14 @@ public class RoomGenerator : MonoBehaviour
     private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
     private int currentRoom = 0; // Número de habitación actual
     private int nEnemies;
-    private float spawnRadius = 1.5f; // Distancia mínima entre enemigos
+    private float ememySpawnRadius = 1f; // Distancia mínima entre enemigos
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
 
     private List<Vector2> spawnPositions = new List<Vector2>(); // Puntos de spawn de enemigos
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         NewRoom(); // Se inicia con el sprite de puertas cerradas y enemigos nuevos
 
@@ -92,15 +95,22 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private bool IsValidSpawn(Vector2 position)     // Método que verifica si una posición es válida para spawnear un enemigo
+    private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición es válida para spawnear un enemigo
     {
-        foreach (Vector2 existingPos in spawnPositions)
+        float playerRadius = 1f; // Define el radio mínimo permitido cerca del jugador
+    
+        foreach (Vector2 existingPoint in spawnPositions)
         {
-            if (Vector2.Distance(position, existingPos) < spawnRadius)
+            // Verifica la distancia con otro spawnPoint
+            if (Vector2.Distance(spawnPoint, existingPoint) < ememySpawnRadius)
             {
-                return false; // Demasiado cerca de otro enemigo
+                // Verifica la distancia con el jugador
+                if (Vector2.Distance(spawnPoint, player.transform.position) < playerRadius)
+                {
+                    return false; // Demasiado cerca del jugador
+                }
             }
-        }
+        }    
         return true;
     }
 }
