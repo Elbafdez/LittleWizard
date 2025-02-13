@@ -5,10 +5,9 @@ using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Transform player;
     [SerializeField] private RoomGenerator roomGenerator;
     private Transform[] nearbyPoints;
-    private float speed = 1.5f;
+    private float speed = 1.3f;
     private int lives = 3;
 
     private Animator animator;
@@ -18,7 +17,6 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Para encontrar los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
@@ -84,9 +82,7 @@ public class Enemy : MonoBehaviour
                 nearestPoint = point;
             }
         }
-
         return nearestPoint;
-
     }
 
     private void Attack(){

@@ -12,7 +12,7 @@ public class RoomGenerator : MonoBehaviour
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
 
     //-------------------------------- ENEMIGOS ------------------------------------------------
-    [SerializeField] private Transform player;  // Referencia al jugador
+    private Transform player;  // Referencia al jugador
     [SerializeField] private GameObject enemyPrefab; // Prefab del enemigo
     private int startMinEnemies = 1; // Min enemigos en la 1ra habitación
     private int startMaxEnemies = 2; // Max enemigos en la 1ra habitación
@@ -30,8 +30,6 @@ public class RoomGenerator : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         NewRoom(); // Se inicia con el sprite de puertas cerradas y enemigos nuevos
-
-        SpawnEnemies(nEnemies);   // Spawnear enemigos
     }
 
     //-------------------------------- HABITACION ------------------------------------------------
@@ -47,6 +45,8 @@ public class RoomGenerator : MonoBehaviour
         Debug.Log("N.Enemigos: " + nEnemies);
 
         spriteRenderer.sprite = spritePuertasCerradas; // Restaurar sprite inicial (Puertas cerradas)
+
+        SpawnEnemies(nEnemies);   // Spawnear enemigos
     }
 
     public void EnemigoDerrotado()      // Método que se llama cuando un enemigo es derrotado
@@ -81,8 +81,7 @@ public class RoomGenerator : MonoBehaviour
         {
             attempts++;
 
-            // Generar una posición aleatoria dentro de los límites
-            Vector2 spawnPoint = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
+            Vector2 spawnPoint = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));   // Punto de spawn aleatorio
 
             // Verificar si la posición es válida (sin solapamiento)
             if (IsValidSpawn(spawnPoint))
@@ -94,23 +93,26 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición es válida para spawnear un enemigo
+    private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición no coincide con el mago ni con el resto de posiciones de spawn
     {
         float playerRadius = 1.5f; // Radio de distancia minima al jugador
         float ememySpawnRadius = 1f; // Distancia mínima entre enemigos
-    
+        bool isValid = true;
+        
+        // Verifica la distancia con el jugador
+        if (Vector2.Distance(spawnPoint, player.transform.position) < playerRadius)     // NO SE ESTA COMPROBANDO
+        {
+            isValid = false; // Demasiado cerca del jugador
+        }
+        
         foreach (Vector2 existingPoint in spawnPositions)
         {
             // Verifica la distancia con otro spawnPoint
             if (Vector2.Distance(spawnPoint, existingPoint) < ememySpawnRadius)
             {
-                // Verifica la distancia con el jugador
-                if (Vector2.Distance(spawnPoint, player.transform.position) < playerRadius)
-                {
-                    return false; // Demasiado cerca del jugador
-                }
+                isValid = false; // Demasiado cerca de otro spawnPoint
             }
-        }    
-        return true;
+        }
+        return isValid;
     }
 }
