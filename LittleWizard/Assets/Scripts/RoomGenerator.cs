@@ -21,7 +21,6 @@ public class RoomGenerator : MonoBehaviour
     private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
     private int currentRoom = 0; // Número de habitación actual
     private int nEnemies;
-    private float ememySpawnRadius = 1f; // Distancia mínima entre enemigos
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
 
     private List<Vector2> spawnPositions = new List<Vector2>(); // Puntos de spawn de enemigos
@@ -97,7 +96,8 @@ public class RoomGenerator : MonoBehaviour
 
     private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición es válida para spawnear un enemigo
     {
-        float playerRadius = 1f; // Define el radio mínimo permitido cerca del jugador
+        float playerRadius = 1.5f; // Radio de distancia minima al jugador
+        float ememySpawnRadius = 1f; // Distancia mínima entre enemigos
     
         foreach (Vector2 existingPoint in spawnPositions)
         {
