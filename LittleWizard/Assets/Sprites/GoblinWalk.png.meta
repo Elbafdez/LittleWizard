@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d113c6ffbec5e3544be83c21286d9dfd
+guid: 5314d2e49d3af0e4093e245fe4c8b6d8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy1Walk_0
+      name: GoblinWalk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d887c92f3b694b47aa4f65b86b6167d
-      internalID: -1519537308
+      spriteID: a8f9190f39edb364eb87b13efce98f08
+      internalID: -1738322360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_1
+      name: GoblinWalk_1
       rect:
         serializedVersion: 2
         x: 110
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: deb949b68bdb3e84fa5873e8cbefeae4
-      internalID: -715586410
+      spriteID: 7310c15a969750240b3e650aca13eeef
+      internalID: 2108526126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_2
+      name: GoblinWalk_2
       rect:
         serializedVersion: 2
         x: 220
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5257ce1175755224d8cb2f9f9b4802a5
-      internalID: 819960750
+      spriteID: 35308797963838146973b9b1b1032e99
+      internalID: 689279371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_3
+      name: GoblinWalk_3
       rect:
         serializedVersion: 2
         x: 330
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 444b548ee01cd454d91052141d060c7d
-      internalID: -819550286
+      spriteID: 912ea7fe3bc0df24a808161cb235b237
+      internalID: 1438887631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_4
+      name: GoblinWalk_4
       rect:
         serializedVersion: 2
         x: 0
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 280537f4a8a6444438f13f977a79a727
-      internalID: -1043142896
+      spriteID: 168a09691ae1e9543ae3dbb45a68ec35
+      internalID: -1597824042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_5
+      name: GoblinWalk_5
       rect:
         serializedVersion: 2
         x: 110
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de26306c8150d2643bebc079fefa393e
-      internalID: 1290505081
+      spriteID: 8dd1c70b70195154fb231b921662897d
+      internalID: 558071101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_6
+      name: GoblinWalk_6
       rect:
         serializedVersion: 2
         x: 220
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9c2775b0e544ad4494894abba5355d7
-      internalID: -1498765523
+      spriteID: 6173481618118a14cbafebeb8c4fd562
+      internalID: 955274283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_7
+      name: GoblinWalk_7
       rect:
         serializedVersion: 2
         x: 330
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 846f180d7e7ad974e81aa27eebc98d72
-      internalID: -1655762537
+      spriteID: a8489b190aafebc499cdf720b2b1144d
+      internalID: 195796204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_8
+      name: GoblinWalk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 053d57eab4682e340a1a8ce75a114c36
-      internalID: 396962454
+      spriteID: 95a47aca00a04ef43bde322931f28b8d
+      internalID: 614197209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_9
+      name: GoblinWalk_9
       rect:
         serializedVersion: 2
         x: 110
@@ -300,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8c7dd95f41e495458dd57b627d8f8fb
-      internalID: 1188707443
+      spriteID: 53e202e2843761041a300c0cf45c8653
+      internalID: -607138181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_10
+      name: GoblinWalk_10
       rect:
         serializedVersion: 2
         x: 220
@@ -321,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5986a68b4574964ea6ed9ca02bc327c
-      internalID: -1605154255
+      spriteID: 9c97785037e6b634fb7ad665b719e72e
+      internalID: 217412870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_11
+      name: GoblinWalk_11
       rect:
         serializedVersion: 2
         x: 330
@@ -342,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55174c74fefb5964cb27b298ed252243
-      internalID: 1553877260
+      spriteID: d2cd24c5571e569459556ffe46d5dfc7
+      internalID: -217953887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_12
+      name: GoblinWalk_12
       rect:
         serializedVersion: 2
         x: 0
@@ -363,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f092e3c522689024aabfcaea42586c30
-      internalID: 838901439
+      spriteID: 49d7690c3bbcc9040842cad24e83c755
+      internalID: 1364495403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_13
+      name: GoblinWalk_13
       rect:
         serializedVersion: 2
         x: 110
@@ -384,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eea7a959f84883344b0680f43d5a464a
-      internalID: 898791534
+      spriteID: 9b465ce93d6654d4cbd380276963dea5
+      internalID: 1572639628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_14
+      name: GoblinWalk_14
       rect:
         serializedVersion: 2
         x: 220
@@ -405,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1926c26543703b0468a96d5770b2ad2e
-      internalID: 709211184
+      spriteID: 6e8d845bedb6e104dbda3865ff2375b3
+      internalID: 1079302102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy1Walk_15
+      name: GoblinWalk_15
       rect:
         serializedVersion: 2
         x: 330
@@ -426,8 +426,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cb94d40e0033b548a13de16b8e4495b
-      internalID: -1405621257
+      spriteID: 27090d8ead981ae43a2b97cb1ef35c17
+      internalID: -1987093834
       vertices: []
       indices: 
       edges: []
@@ -443,22 +443,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Enemy1Walk_0: -1519537308
-      Enemy1Walk_1: -715586410
-      Enemy1Walk_10: -1605154255
-      Enemy1Walk_11: 1553877260
-      Enemy1Walk_12: 838901439
-      Enemy1Walk_13: 898791534
-      Enemy1Walk_14: 709211184
-      Enemy1Walk_15: -1405621257
-      Enemy1Walk_2: 819960750
-      Enemy1Walk_3: -819550286
-      Enemy1Walk_4: -1043142896
-      Enemy1Walk_5: 1290505081
-      Enemy1Walk_6: -1498765523
-      Enemy1Walk_7: -1655762537
-      Enemy1Walk_8: 396962454
-      Enemy1Walk_9: 1188707443
+      GoblinWalk_0: -1738322360
+      GoblinWalk_1: 2108526126
+      GoblinWalk_10: 217412870
+      GoblinWalk_11: -217953887
+      GoblinWalk_12: 1364495403
+      GoblinWalk_13: 1572639628
+      GoblinWalk_14: 1079302102
+      GoblinWalk_15: -1987093834
+      GoblinWalk_2: 689279371
+      GoblinWalk_3: 1438887631
+      GoblinWalk_4: -1597824042
+      GoblinWalk_5: 558071101
+      GoblinWalk_6: 955274283
+      GoblinWalk_7: 195796204
+      GoblinWalk_8: 614197209
+      GoblinWalk_9: -607138181
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

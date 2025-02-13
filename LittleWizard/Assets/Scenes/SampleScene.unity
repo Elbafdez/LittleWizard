@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 972541249}
   m_Layer: 8
   m_Name: PointAttackT
-  m_TagString: Untagged
+  m_TagString: NearbyPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 1277200466}
   m_Layer: 8
   m_Name: PointAttackB
-  m_TagString: Untagged
+  m_TagString: NearbyPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 1455157171}
   m_Layer: 8
   m_Name: PointAttackL
-  m_TagString: Untagged
+  m_TagString: NearbyPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1320,7 +1320,7 @@ Transform:
   m_GameObject: {fileID: 1455157170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8, y: 0, z: 0}
+  m_LocalPosition: {x: -0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 1735743384}
   m_Layer: 8
   m_Name: PointAttackR
-  m_TagString: Untagged
+  m_TagString: NearbyPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1558,7 +1558,7 @@ Transform:
   m_GameObject: {fileID: 1735743383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalPosition: {x: 0.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
