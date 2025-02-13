@@ -518,7 +518,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spritePuertasCerradas: {fileID: 1348862640, guid: 15ef47c484b06f24e8a81e6825ed1494, type: 3}
   spritePuertasAbiertas: {fileID: 1227566285, guid: 15ef47c484b06f24e8a81e6825ed1494, type: 3}
-  player: {fileID: 1142345357}
   enemyPrefab: {fileID: 8734825495536446324, guid: a0caafc37a0eead41a0a1fb073dca4d1, type: 3}
   xMin: -3
   xMax: 3
