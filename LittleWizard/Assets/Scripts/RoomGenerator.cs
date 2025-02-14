@@ -10,7 +10,7 @@ public class RoomGenerator : MonoBehaviour
     public Sprite spritePuertasAbiertas;
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
-
+    [SerializeField] private GameObject[] Doors;   // Referencia a las puertas
     //-------------------------------- ENEMIGOS ------------------------------------------------
     private Transform player;  // Referencia al jugador
     [SerializeField] private GameObject enemyPrefab; // Prefab del enemigo
@@ -37,7 +37,6 @@ public class RoomGenerator : MonoBehaviour
     public void NewRoom()    // Método que resetea la habitación
     {   
         Debug.Log("N.Habitación: " + currentRoom);
-
         currentRoom ++; // Incrementar el número de habitación
 
         nEnemies = GetEnemyCount(); // Obtener el número de enemigos a spawnear
@@ -45,6 +44,10 @@ public class RoomGenerator : MonoBehaviour
         Debug.Log("N.Enemigos: " + nEnemies);
 
         spriteRenderer.sprite = spritePuertasCerradas; // Restaurar sprite inicial (Puertas cerradas)
+        foreach (GameObject door in Doors)  // Ocultar puertas
+        {
+            door.SetActive(false);
+        }
 
         SpawnEnemies(nEnemies);   // Spawnear enemigos
     }
@@ -57,6 +60,10 @@ public class RoomGenerator : MonoBehaviour
         {
             Debug.Log("Todos los enemigos derrotados");
             spriteRenderer.sprite = spritePuertasAbiertas;
+            foreach (GameObject door in Doors)  // Mostrar puertas
+        {
+            door.SetActive(true);
+        }
         }
     }
 

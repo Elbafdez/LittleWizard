@@ -7,6 +7,7 @@ TagManager:
   - MagicBall
   - Enemy
   - NearbyPoint
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private RoomGenerator roomGenerator;
     private Animator playeranimator;
     private float speed = 2f;
     private int lives = 5;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     {
         rbplayer = GetComponent<Rigidbody2D>();
         playeranimator = GetComponent<Animator>();
+        roomGenerator = FindObjectOfType<RoomGenerator>();
     }
     void Update()
     {
@@ -53,5 +55,14 @@ public class Player : MonoBehaviour
         // Guardar la última dirección en la que se movió para el idle
         playeranimator.SetFloat("LastMoveX", lastMoveDirection.x);
         playeranimator.SetFloat("LastMoveY", lastMoveDirection.y);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Door"))
+        {
+            Debug.Log("Cambio de habitación");
+            roomGenerator.NewRoom();
+        }
     }
 }

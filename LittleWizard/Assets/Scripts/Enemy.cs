@@ -5,7 +5,7 @@ using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private RoomGenerator roomGenerator;
+    private RoomGenerator roomGenerator;
     private Transform[] nearbyPoints;
     private float speed = 1.3f;
     private int lives = 3;
