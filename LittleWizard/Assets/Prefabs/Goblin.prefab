@@ -138,7 +138,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -162,8 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c7ff1eb74fa6145ba5f81d85b8dc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  roomGenerator: {fileID: 0}
 --- !u!95 &2027153338006681556
 Animator:
   serializedVersion: 5

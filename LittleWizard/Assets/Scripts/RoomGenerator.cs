@@ -20,7 +20,7 @@ public class RoomGenerator : MonoBehaviour
     private int finalMaxEnemies = 8; // Max enemigos en habitaciones avanzadas
     private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
     private int currentRoom = 0; // Número de habitación actual
-    private int nEnemies;
+    private int nEnemies = 0;
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
 
     private List<Vector2> spawnPositions = new List<Vector2>(); // Puntos de spawn de enemigos
@@ -69,7 +69,7 @@ public class RoomGenerator : MonoBehaviour
 
     //-------------------------------- ENEMIGOS ------------------------------------------------
 
-    public int GetEnemyCount()     // Método que devuelve un número aleatorio de enemigos a spawnear
+    public int GetEnemyCount()     // Método que devuelve un número aleatorio de enemigos a spawnear------------------------------ NO VA --------------------------------
     {
         // Calcular progresivamente el mínimo y máximo de enemigos hasta llegar al límite
         int dynamicMin = (int)Mathf.Lerp(startMinEnemies, finalMinEnemies, (float)currentRoom / roomsUntilMax);
