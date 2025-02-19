@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     private Animator animator;
     private Vector2 moveDirection;
+    private Vector2 lastMoveDirection = Vector2.down;
 
     void Start()
     {
@@ -50,6 +51,11 @@ public class Enemy : MonoBehaviour
     private void Follow()
     {
         Transform nearestPoint = NearbyPoint(nearbyPoints); // Encuentra el punto más cercano
+
+        if (moveDirection != Vector2.zero)
+            {
+                lastMoveDirection = moveDirection;
+            }
         
 
         if (Vector2.Distance(transform.position, nearestPoint.position) > 0f){         
@@ -60,10 +66,17 @@ public class Enemy : MonoBehaviour
             animator.SetFloat("Horizontal", moveDirection.x);
             animator.SetFloat("Vertical", moveDirection.y);
             animator.SetBool("IsMoving", true);
+            animator.SetBool("Atack", false);
+
         }
         else
         {
             animator.SetBool("IsMoving", false);
+
+            // Guardar la última dirección en la que se movió para el idle
+            animator.SetFloat("LastMoveX", lastMoveDirection.x);
+            animator.SetFloat("LastMoveY", lastMoveDirection.y);
+
             Attack();
         }
     }
@@ -86,6 +99,6 @@ public class Enemy : MonoBehaviour
     }
 
     private void Attack(){
-        //atacar
+        animator.SetBool("Atack", true);
     }
 }
