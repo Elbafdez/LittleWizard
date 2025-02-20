@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Game Over");
+            Time.timeScale = 0;
             //GameOver
         }
 

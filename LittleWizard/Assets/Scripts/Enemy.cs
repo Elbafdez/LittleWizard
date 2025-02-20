@@ -9,16 +9,16 @@ public class Enemy : MonoBehaviour
     private Transform[] nearbyPoints;
     private float speed = 1.3f;
     private int lives = 3;
-
     private Animator animator;
-    private Vector2 moveDirection;
-    private Vector2 lastMoveDirection = Vector2.down;
-    private bool isAttacking = false;
+    private Vector2 moveDirection = Vector2.down;
+    private Transform player;
+    private bool isFacingRight = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Para encontrar los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
@@ -39,33 +39,42 @@ public class Enemy : MonoBehaviour
             roomGenerator.EnemigoDerrotado();   // Llamar al método EnemigoDerrotado
             Destroy(gameObject);
         }
+        
+        bool isPlayerRight = transform.position.x < player.transform.position.x;
+        Flip(isPlayerRight);
     }
     
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "MagicBall")
         {
-            if (other.gameObject.tag == "MagicBall")
-            {
-                lives--;
-            }
+            lives--;
         }
+    }
+
+    private void Flip(bool isPlayerRight)
+    {
+        if ((isFacingRight && !isPlayerRight) || (!isFacingRight && isPlayerRight))
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }    
 
     private void Follow()
     {
         Transform nearestPoint = NearbyPoint(nearbyPoints); // Encuentra el punto más cercano
-
-        if (moveDirection != Vector2.zero)
-            {
-                lastMoveDirection = moveDirection;
-            }
         
 
         if (Vector2.Distance(transform.position, nearestPoint.position) > 0f){         
 
             transform.position = Vector2.MoveTowards(transform.position, nearestPoint.position, speed * Time.deltaTime);
 
-            moveDirection = nearestPoint.position - transform.position;
-            animator.SetFloat("Horizontal", moveDirection.x);
-            animator.SetFloat("Vertical", moveDirection.y);
+            //moveDirection = nearestPoint.position - transform.position;
+            //animator.SetFloat("Horizontal", moveDirection.x);
+            //animator.SetFloat("Vertical", moveDirection.y);
             animator.SetBool("IsMoving", true);
 
             StopAttack();
@@ -98,11 +107,9 @@ public class Enemy : MonoBehaviour
     private void Attack()
     {
         animator.SetBool("Atack", true);
-        isAttacking = true;
     }
     private void StopAttack()
     {
         animator.SetBool("Atack", false);
-        isAttacking = false;
     }
 }
