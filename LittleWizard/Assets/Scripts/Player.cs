@@ -20,13 +20,14 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        PlayerMovement();
-
         if (lives <= 0)
         {
             Destroy(gameObject);
-            //Game Over
+            Debug.Log("Game Over");
+            //GameOver
         }
+
+        PlayerMovement();
     }
 
     private void FixedUpdate()
@@ -57,12 +58,17 @@ public class Player : MonoBehaviour
         playeranimator.SetFloat("LastMoveY", lastMoveDirection.y);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.CompareTag("Door"))
+        if (collision.gameObject.CompareTag("Door"))
         {
             Debug.Log("Cambio de habitación");
             roomGenerator.NewRoom();
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            lives--;
+            Debug.Log("Vidas: " + lives);
         }
     }
 }
