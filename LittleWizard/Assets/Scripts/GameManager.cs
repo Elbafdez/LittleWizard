@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int lives = 6;
+    private int lives = 60;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOver;
     [SerializeField] public GameObject[] hearts;

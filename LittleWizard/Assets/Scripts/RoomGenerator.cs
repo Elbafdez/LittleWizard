@@ -36,6 +36,7 @@ public class RoomGenerator : MonoBehaviour
 
     public void NewRoom()    // Método que resetea la habitación
     {   
+        spawnPositions.Clear(); // Limpiar lista de posiciones de spawn
         Debug.Log("N.Habitación: " + currentRoom);
         currentRoom ++; // Incrementar el número de habitación
 
@@ -58,12 +59,12 @@ public class RoomGenerator : MonoBehaviour
 
         if (enemigosRestantes <= 0)
         {
-            Debug.Log("Todos los enemigos derrotados");
+            Debug.Log("Todos los enemigos derrotados, abrir puertas");
             spriteRenderer.sprite = spritePuertasAbiertas;
             foreach (GameObject door in Doors)  // Mostrar puertas
-        {
-            door.SetActive(true);
-        }
+            {
+                door.SetActive(true);
+            }
         }
     }
 
@@ -98,6 +99,7 @@ public class RoomGenerator : MonoBehaviour
                 spawnedEnemies++;
             }
         }
+        Debug.Log("Enemigos spawneados: " + spawnedEnemies);
     }
 
     private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición no coincide con el mago ni con el resto de posiciones de spawn
