@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private RoomGenerator roomGenerator;
+    private GameManager gameManager;
     private Animator playeranimator;
     private float speed = 2f;
-    private int lives = 5;
     private Rigidbody2D rbplayer;
     private Vector2 moveImput;
     private Vector2 lastMoveDirection = Vector2.down;
@@ -17,17 +17,11 @@ public class Player : MonoBehaviour
         rbplayer = GetComponent<Rigidbody2D>();
         playeranimator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
+        gameManager = FindObjectOfType<GameManager>();
     }
+
     void Update()
     {
-        if (lives <= 0)
-        {
-            Destroy(gameObject);
-            Debug.Log("Game Over");
-            Time.timeScale = 0;
-            //GameOver
-        }
-
         PlayerMovement();
     }
 
@@ -68,8 +62,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            lives--;
-            Debug.Log("Vidas: " + lives);
+            gameManager.ReducirVida();
         }
     }
 }

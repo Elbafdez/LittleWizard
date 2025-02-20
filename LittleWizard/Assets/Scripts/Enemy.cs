@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float speed = 1.3f;
     private int lives = 3;
     private Animator animator;
-    private Vector2 moveDirection = Vector2.down;
+    //private Vector2 moveDirection = Vector2.down;
     private Transform player;
     private bool isFacingRight = true;
 
@@ -32,6 +32,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            // Si el jugador no existe, no hacer nada
+            return;
+        }
+
         Follow();
 
         if (lives <= 0)

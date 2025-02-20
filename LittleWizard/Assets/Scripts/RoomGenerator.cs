@@ -15,9 +15,9 @@ public class RoomGenerator : MonoBehaviour
     private Transform player;  // Referencia al jugador
     [SerializeField] private GameObject enemyPrefab; // Prefab del enemigo
     private int startMinEnemies = 1; // Min enemigos en la 1ra habitación
-    private int startMaxEnemies = 2; // Max enemigos en la 1ra habitación
-    private int finalMinEnemies = 6; // Min enemigos en habitaciones avanzadas
-    private int finalMaxEnemies = 8; // Max enemigos en habitaciones avanzadas
+    private int startMaxEnemies = 1; // Max enemigos en la 1ra habitación
+    private int finalMinEnemies = 5; // Min enemigos en habitaciones avanzadas
+    private int finalMaxEnemies = 6; // Max enemigos en habitaciones avanzadas
     private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
     private int currentRoom = 0; // Número de habitación actual
     private int nEnemies = 0;
