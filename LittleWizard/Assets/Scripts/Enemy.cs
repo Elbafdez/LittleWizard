@@ -7,18 +7,20 @@ public class Enemy : MonoBehaviour
 {
     private RoomGenerator roomGenerator;
     private Transform[] nearbyPoints;
+    private GameManager gameManager;
     private float speed = 1.3f;
     private int lives = 3;
     private Animator animator;
-    //private Vector2 moveDirection = Vector2.down;
+    private Vector2 moveDirection = Vector2.down;
     private Transform player;
-    private bool isFacingRight = true;
+    private bool hasAttacked = false; // Variable de control para el ataque
 
     void Start()
     {
         animator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = FindObjectOfType<GameManager>();
 
         // Para encontrar los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
@@ -45,9 +47,6 @@ public class Enemy : MonoBehaviour
             roomGenerator.EnemigoDerrotado();   // Llamar al método EnemigoDerrotado
             Destroy(gameObject);
         }
-        
-        bool isPlayerRight = transform.position.x < player.transform.position.x;
-        Flip(isPlayerRight);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -58,29 +57,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Flip(bool isPlayerRight)
-    {
-        if ((isFacingRight && !isPlayerRight) || (!isFacingRight && isPlayerRight))
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
-    }    
-
     private void Follow()
     {
         Transform nearestPoint = NearbyPoint(nearbyPoints); // Encuentra el punto más cercano
-        
 
-        if (Vector2.Distance(transform.position, nearestPoint.position) > 0f){         
-
+        if (Vector2.Distance(transform.position, nearestPoint.position) > 0f)
+        {
             transform.position = Vector2.MoveTowards(transform.position, nearestPoint.position, speed * Time.deltaTime);
 
-            //moveDirection = nearestPoint.position - transform.position;
-            //animator.SetFloat("Horizontal", moveDirection.x);
-            //animator.SetFloat("Vertical", moveDirection.y);
+            moveDirection = nearestPoint.position - transform.position;
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
             animator.SetBool("IsMoving", true);
 
             StopAttack();
@@ -112,10 +99,25 @@ public class Enemy : MonoBehaviour
     
     private void Attack()
     {
-        animator.SetBool("Atack", true);
+        if (!hasAttacked) // Verifica si ya ha atacado
+        {
+            AttackDirection();
+            animator.SetBool("Atack", true);
+            gameManager.ReducirVida();
+            hasAttacked = true; // Marca que ya ha atacado
+        }
     }
+
     private void StopAttack()
     {
         animator.SetBool("Atack", false);
+        hasAttacked = false; // Resetea la variable de control cuando deja de atacar
+    }
+
+    private void AttackDirection()
+    {
+        Vector2 attackDirection = player.position - transform.position;
+        animator.SetFloat("Horizontal", attackDirection.x);
+        animator.SetFloat("Vertical", attackDirection.y);
     }
 }

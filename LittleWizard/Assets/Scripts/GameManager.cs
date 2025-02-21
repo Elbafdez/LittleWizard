@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int lives = 6;
+    private int playerLives = 6;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOver;
     [SerializeField] public GameObject[] hearts;
 
     void Update()
     {
-        if (lives <= 0)
+        if (playerLives <= 0)
         {
             Destroy(player);
             Time.timeScale = 0;
@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
 
     public void ReducirVida()
     {
-        lives--;
-        Debug.Log("Vidas: " + lives);
+        playerLives--;
+        Debug.Log("Vidas: " + playerLives);
 
-        if (lives <= 0)
+        if (playerLives <= 0)
         {
             gameOver.SetActive(true);
         }
@@ -34,6 +34,6 @@ public class GameManager : MonoBehaviour
 
     private void RestarVidaUI()
     {
-        hearts[lives].SetActive(false);
+        hearts[playerLives].SetActive(false);
     }
 }
