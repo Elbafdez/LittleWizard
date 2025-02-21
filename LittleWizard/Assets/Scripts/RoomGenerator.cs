@@ -11,6 +11,7 @@ public class RoomGenerator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
     [SerializeField] private GameObject[] Doors;   // Referencia a las puertas
+    
     //-------------------------------- ENEMIGOS ------------------------------------------------
     private Transform player;  // Referencia al jugador
     [SerializeField] private GameObject enemyPrefab; // Prefab del enemigo
@@ -35,7 +36,8 @@ public class RoomGenerator : MonoBehaviour
     //-------------------------------- HABITACION ------------------------------------------------
 
     public void NewRoom()    // Método que resetea la habitación
-    {   
+    {
+        
         spawnPositions.Clear(); // Limpiar lista de posiciones de spawn
         Debug.Log("N.Habitación: " + currentRoom);
         currentRoom ++; // Incrementar el número de habitación
