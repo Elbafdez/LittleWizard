@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private RoomGenerator roomGenerator;
     private Transform[] nearbyPoints;
     private GameManager gameManager;
-    private float speed = 1.3f;
+    private float speed = 1.5f;
     private int lives = 3;
     private Animator animator;
     private Vector2 moveDirection = Vector2.down;

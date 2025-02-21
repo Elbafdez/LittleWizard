@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Door"))
         {
             Debug.Log("Cambio de habitación");
+            transform.position *= -1;
             roomGenerator.NewRoom();
         }
     }
