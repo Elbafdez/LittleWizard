@@ -19,7 +19,7 @@ public class RoomGenerator : MonoBehaviour
     private int startMaxEnemies = 1; // Max enemigos en la 1ra habitación
     private int finalMinEnemies = 5; // Min enemigos en habitaciones avanzadas
     private int finalMaxEnemies = 6; // Max enemigos en habitaciones avanzadas
-    private int roomsUntilMax = 10; // Número de habitaciones hasta alcanzar el límite
+    private int roomsUntilMax = 8; // Número de habitaciones hasta alcanzar el límite
     private int currentRoom = 0; // Número de habitación actual
     private int nEnemies = 0;
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
@@ -37,6 +37,11 @@ public class RoomGenerator : MonoBehaviour
 
     public void NewRoom()    // Método que resetea la habitación
     {
+        GameObject[] magicBalls = GameObject.FindGameObjectsWithTag("MagicBall");
+        foreach (GameObject ball in magicBalls)
+        {
+            Destroy(ball);
+        }
         
         spawnPositions.Clear(); // Limpiar lista de posiciones de spawn
         Debug.Log("N.Habitación: " + currentRoom);
