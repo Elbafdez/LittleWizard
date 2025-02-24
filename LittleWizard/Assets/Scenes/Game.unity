@@ -597,7 +597,6 @@ GameObject:
   m_Component:
   - component: {fileID: 616741795}
   - component: {fileID: 616741794}
-  - component: {fileID: 616741793}
   m_Layer: 0
   m_Name: PantallaNegra
   m_TagString: Untagged
@@ -605,18 +604,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!225 &616741793
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616741792}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!212 &616741794
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -872,6 +859,7 @@ MonoBehaviour:
   - {fileID: 1876297379}
   - {fileID: 1599956628}
   - {fileID: 2042062558}
+  blackScreen: {fileID: 616741794}
   enemyPrefab: {fileID: 8734825495536446324, guid: a0caafc37a0eead41a0a1fb073dca4d1, type: 3}
   xMin: -3
   xMax: 3

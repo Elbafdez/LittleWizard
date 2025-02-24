@@ -11,6 +11,8 @@ public class RoomGenerator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
     [SerializeField] private GameObject[] Doors;   // Referencia a las puertas
+    [SerializeField] private SpriteRenderer blackScreen; // Referencia al SpriteRenderer de la pantalla negra
+    private float fadeDuration = 1f; // Duración del fade
     
     //-------------------------------- ENEMIGOS ------------------------------------------------
     private Transform player;  // Referencia al jugador
@@ -37,11 +39,13 @@ public class RoomGenerator : MonoBehaviour
 
     public void NewRoom()    // Método que resetea la habitación
     {
-        GameObject[] magicBalls = GameObject.FindGameObjectsWithTag("MagicBall");
+        GameObject[] magicBalls = GameObject.FindGameObjectsWithTag("MagicBall");   // Buscar todas las bolas mágicas y destruirlas
         foreach (GameObject ball in magicBalls)
         {
             Destroy(ball);
         }
+
+        StartCoroutine(FadeInRoom());
         
         spawnPositions.Clear(); // Limpiar lista de posiciones de spawn
         Debug.Log("N.Habitación: " + currentRoom);
@@ -58,6 +62,26 @@ public class RoomGenerator : MonoBehaviour
         }
 
         SpawnEnemies(nEnemies);   // Spawnear enemigos
+    }
+
+    private IEnumerator FadeInRoom()
+    {
+        Time.timeScale = 0f; // Pausar el tiempo
+        blackScreen.gameObject.SetActive(true); // Activar la pantalla negra
+        float elapsedTime = 0f; // Tiempo transcurrido
+        Color screenColor = blackScreen.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.unscaledDeltaTime; // Se usa el tiempo sin escalado para evitar que el fade se congele
+            float newAlpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration); // Interpolar alpha de 1 a 0
+            blackScreen.color = new Color(screenColor.r, screenColor.g, screenColor.b, newAlpha); // Aplicar nuevo alpha
+            yield return null; // Esperar al siguiente frame
+        }
+
+        blackScreen.color = new Color(screenColor.r, screenColor.g, screenColor.b, 0f); // Asegurar que queda transparente
+        blackScreen.gameObject.SetActive(false); // Desactivar la pantalla negra
+        Time.timeScale = 1f; // Reanudar el tiempo
     }
 
     public void EnemigoDerrotado()      // Método que se llama cuando un enemigo es derrotado
