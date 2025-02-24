@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MagicBall : MonoBehaviour
 {
-    public float growthRate = 0.5f; // Tasa de crecimiento por segundo
-    public float maxSize = 1f; // Tamaño máximo de la bola
-    public float rotationSpeed = 100f; // Velocidad de rotación en grados por segundo
+    private float growthRate = 0.5f; // Tasa de crecimiento por segundo
+    private float maxSize = 1f; // Tamaño máximo de la bola
+    private float rotationSpeed = 200f; // Velocidad de rotación en grados por segundo
 
     void Start()
     {
