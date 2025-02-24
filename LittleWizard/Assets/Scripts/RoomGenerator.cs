@@ -12,7 +12,6 @@ public class RoomGenerator : MonoBehaviour
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
     [SerializeField] private GameObject[] Doors;   // Referencia a las puertas
     [SerializeField] private SpriteRenderer blackScreen; // Referencia al SpriteRenderer de la pantalla negra
-    private float fadeDuration = 1f; // Duración del fade
     
     //-------------------------------- ENEMIGOS ------------------------------------------------
     private Transform player;  // Referencia al jugador
@@ -68,18 +67,23 @@ public class RoomGenerator : MonoBehaviour
     {
         Time.timeScale = 0f; // Pausar el tiempo
         blackScreen.gameObject.SetActive(true); // Activar la pantalla negra
+        blackScreen.color = new Color(blackScreen.color.r, blackScreen.color.g, blackScreen.color.b, 1f); // Asegurarse de que la pantalla esté completamente negra
+    
+        // Mantener la pantalla negra durante 1 segundo
+        yield return new WaitForSecondsRealtime(0.4f);
+    
         float elapsedTime = 0f; // Tiempo transcurrido
         Color screenColor = blackScreen.color;
-
-        while (elapsedTime < fadeDuration)
+    
+        // Desvanecer la pantalla negra en el siguiente segundo
+        while (elapsedTime < 1f)
         {
             elapsedTime += Time.unscaledDeltaTime; // Se usa el tiempo sin escalado para evitar que el fade se congele
-            float newAlpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration); // Interpolar alpha de 1 a 0
+            float newAlpha = Mathf.Lerp(1f, 0f, elapsedTime / 1f); // Interpolar alpha de 1 a 0 en 1 segundo
             blackScreen.color = new Color(screenColor.r, screenColor.g, screenColor.b, newAlpha); // Aplicar nuevo alpha
             yield return null; // Esperar al siguiente frame
         }
-
-        blackScreen.color = new Color(screenColor.r, screenColor.g, screenColor.b, 0f); // Asegurar que queda transparente
+    
         blackScreen.gameObject.SetActive(false); // Desactivar la pantalla negra
         Time.timeScale = 1f; // Reanudar el tiempo
     }
