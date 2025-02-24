@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private RoomGenerator roomGenerator;
+    private GameManager gameManager;
     private Animator playeranimator;
     private float speed = 2f;
     private Rigidbody2D rbplayer;
@@ -58,6 +59,10 @@ public class Player : MonoBehaviour
             Debug.Log("Cambio de habitación");
             transform.position *= -1;
             roomGenerator.NewRoom();
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.ReducirVida();
         }
     }
 }

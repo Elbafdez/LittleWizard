@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private Vector2 moveDirection = Vector2.down;
     private Transform player;
     private bool hasAttacked = false; // Variable de control para el ataque
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -104,16 +105,28 @@ public class Enemy : MonoBehaviour
         if (!hasAttacked) // Verifica si ya ha atacado
         {
             AttackDirection();
-            animator.SetBool("Atack", true);
-            gameManager.ReducirVida();
+            animator.SetBool("Attack", true);
+            StartCoroutine(ApplyDamageOverTime());
             hasAttacked = true; // Marca que ya ha atacado
+        }
+    }
+
+    private IEnumerator ApplyDamageOverTime()
+    {
+        isAttacking = true;
+        while (isAttacking)
+        {
+            gameManager.ReducirVida();
+            yield return new WaitForSeconds(1f);
         }
     }
 
     private void StopAttack()
     {
-        animator.SetBool("Atack", false);
-        hasAttacked = false; // Resetea la variable de control cuando deja de atacar
+        isAttacking = false;
+        animator.SetBool("Attack", false);
+        hasAttacked = false;
+        StopCoroutine(ApplyDamageOverTime());
     }
 
     private void AttackDirection()
