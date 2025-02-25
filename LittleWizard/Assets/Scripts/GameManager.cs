@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             gameOver.SetActive(true);
         }
 
-        RestarVidaUI();
+        RestarVidaUI(); // Restar vida en la UI
     }
 
     private void RestarVidaUI()
