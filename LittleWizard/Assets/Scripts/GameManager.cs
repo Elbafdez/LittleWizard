@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private int playerLives = 6;
-    private SceneManager sceneManager;
     public string Game;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOver;
