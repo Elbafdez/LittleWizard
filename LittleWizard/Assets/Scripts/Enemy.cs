@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
         nearbyPoints = new Transform[points.Length];    // Crea un array de Transforms
 
-        for (int i = 0; i < points.Length; i++)
+        for (int i = 0; i < points.Length; i++) // Recorre todos los puntos
         {
             nearbyPoints[i] = points[i].transform; // Guarda solo el Transform
         }
@@ -35,9 +35,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        if (player == null) // Si el jugador no existe, no hacer nada
         {
-            // Si el jugador no existe, no hacer nada
             return;
         }
 
@@ -100,7 +99,7 @@ public class Enemy : MonoBehaviour
     }
     
     //---------------------------------- ATAQUE ----------------------------------------------
-    private void Attack()
+    private void Attack()   // Método para atacar
     {
         if (!hasAttacked) // Verifica si ya ha atacado
         {
@@ -111,7 +110,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void StopAttack()
+    private void StopAttack()   // Método para detener el ataque
     {
         isAttacking = false;
         animator.SetBool("Attack", false);
