@@ -1233,9 +1233,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1142345357}
   - component: {fileID: 1142345358}
+  - component: {fileID: 1142345362}
   - component: {fileID: 1142345360}
   - component: {fileID: 1142345359}
-  - component: {fileID: 1142345362}
   - component: {fileID: 1142345363}
   m_Layer: 8
   m_Name: Player
@@ -1387,8 +1387,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010146916, y: -0.017368317}
-  m_Size: {x: 0.5181227, y: 0.5181227}
+  m_Offset: {x: 0.010146916, y: -0.047474742}
+  m_Size: {x: 0.7847797, y: 0.7847798}
   m_Direction: 0
 --- !u!95 &1142345363
 Animator:

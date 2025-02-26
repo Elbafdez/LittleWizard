@@ -6,9 +6,10 @@ using UnityEngine.Timeline;
 public class Enemy : MonoBehaviour
 {
     private RoomGenerator roomGenerator;
+    private static List<Transform> occupiedPoints = new List<Transform>();
     private Transform[] nearbyPoints;
     private GameManager gameManager;
-    private float speed = 1.5f;
+    private float speed;
     private int lives = 3;
     private Animator animator;
     private Vector2 moveDirection = Vector2.down;
@@ -22,6 +23,8 @@ public class Enemy : MonoBehaviour
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
+
+        speed = Random.Range(1.3f,1.8f);
 
         // Para encontrar los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
@@ -59,26 +62,33 @@ public class Enemy : MonoBehaviour
     }
 
     //---------------------------------- MOVIMIENTO ----------------------------------------------
-    private void Follow()
+    private void Follow()       // -----------------------------------------------------------------??????????????????????          SE LLAMA EN TODOS LOS FRAMES (COLLIDER MAS GRANDE)
     {
         Transform nearestPoint = NearbyPoint(nearbyPoints); // Encuentra el punto más cercano
 
-        if (Vector2.Distance(transform.position, nearestPoint.position) > 0f)   //Si la distancia es mayor a 0, moverse
-        {
-            transform.position = Vector2.MoveTowards(transform.position, nearestPoint.position, speed * Time.deltaTime);
+        //if(nearestPoint ! esta ocupado){}
 
-            moveDirection = nearestPoint.position - transform.position;
-            animator.SetFloat("Horizontal", moveDirection.x);
-            animator.SetFloat("Vertical", moveDirection.y);
-            animator.SetBool("IsMoving", true);
+            if (Vector2.Distance(transform.position, nearestPoint.position) > 0f)   //Si la distancia es mayor a 0, moverse
+            {
+                transform.position = Vector2.MoveTowards(transform.position, nearestPoint.position, speed * Time.deltaTime);
 
-            StopAttack();
-        }
-        else    // Si la distancia es 0, atacar
-        {
-            animator.SetBool("IsMoving", false);
-            Attack();
-        }
+                moveDirection = nearestPoint.position - transform.position;
+                animator.SetFloat("Horizontal", moveDirection.x);
+                animator.SetFloat("Vertical", moveDirection.y);
+                animator.SetBool("IsMoving", true);
+
+                StopAttack();
+            }
+
+            else    // Si la distancia es 0, atacar
+            {
+                //occupiedPoints.Add(nearestPoint);   // nearestPoint está ocupado        ??????????????
+                animator.SetBool("IsMoving", false);
+                Attack();
+            }
+
+        //else  (si que esta ocupado)
+        //busca otro nearestPoint
     }
 
     Transform NearbyPoint(Transform[] nearbyPoints)     // Método para encontrar el punto más cercano
@@ -88,11 +98,14 @@ public class Enemy : MonoBehaviour
         
         foreach (Transform point in nearbyPoints)   // Recorre todos los puntos
         {
-            float distanceSqr = (point.position - transform.position).sqrMagnitude; // Usamos sqrMagnitude para optimización
-            if (distanceSqr < minDistanceSqr)   // Si la distancia es menor a la mínima
-            {
-                minDistanceSqr = distanceSqr;   // Actualiza la distancia mínima
-                nearestPoint = point;   // Guarda el punto más cercano
+            if (! occupiedPoints.Contains(point)){      // Si el pt NO esta ocupado ????????????????????????????????????????????????????????????????????????????????????????????????????
+
+                float distanceSqr = (point.position - transform.position).sqrMagnitude; // Buscamos distancia minima entre el enemy y cada punto (por el foreach)
+                if (distanceSqr < minDistanceSqr)   // Si la distancia de este punto es menor a la mínima que habia con los puntos anteriores
+                {
+                    minDistanceSqr = distanceSqr;   // Actualiza la distancia mínima
+                    nearestPoint = point;   // Guarda el punto más cercano
+                }
             }
         }
         return nearestPoint;
