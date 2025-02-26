@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,8 +13,9 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private Vector2 moveDirection = Vector2.down;
     private Transform player;
-    private bool hasAttacked = false; // Variable de control para el ataque
+    private bool hasAttacked = false; 
     private bool isAttacking = false;
+    private Transform currentTarget = null; // Guarda el punto actual donde el enemigo está atacando
 
     void Start()
     {
@@ -24,35 +24,31 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
 
-        speed = Random.Range(1.3f,1.8f);
+        speed = Random.Range(1.3f, 1.8f);
 
-        // Para encontrar los NearbyPoints
-        GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint"); // Busca todos los puntos esta etiqueta
-        nearbyPoints = new Transform[points.Length];    // Crea un array de Transforms
+        // Obtener los NearbyPoints
+        GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint");
+        nearbyPoints = new Transform[points.Length];
 
-        for (int i = 0; i < points.Length; i++) // Recorre todos los puntos
+        for (int i = 0; i < points.Length; i++)
         {
-            nearbyPoints[i] = points[i].transform; // Guarda solo el Transform
+            nearbyPoints[i] = points[i].transform;
         }
     }
 
     void Update()
     {
-        if (player == null) // Si el jugador no existe, no hacer nada
-        {
-            return;
-        }
+        if (player == null) return;
 
         Follow();
 
         if (lives <= 0)
         {
-            roomGenerator.EnemigoDerrotado();   // Llamar al método EnemigoDerrotado
+            roomGenerator.EnemigoDerrotado();
             Destroy(gameObject);
         }
     }
-    
-    //---------------------------------- PERDER VIDA ----------------------------------------------
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "MagicBall")
@@ -62,76 +58,89 @@ public class Enemy : MonoBehaviour
     }
 
     //---------------------------------- MOVIMIENTO ----------------------------------------------
-    private void Follow()       // -----------------------------------------------------------------??????????????????????          SE LLAMA EN TODOS LOS FRAMES (COLLIDER MAS GRANDE)
+    private void Follow()
     {
-        Transform nearestPoint = NearbyPoint(nearbyPoints); // Encuentra el punto más cercano
+        if (currentTarget == null || Vector2.Distance(transform.position, player.position) > 2f) 
+        {
+            // Si no hay punto asignado o el jugador se aleja, buscar otro punto
+            Transform nearestPoint = NearbyPoint(nearbyPoints);
 
-        //if(nearestPoint ! esta ocupado){}
-
-            if (Vector2.Distance(transform.position, nearestPoint.position) > 0f)   //Si la distancia es mayor a 0, moverse
+            if (nearestPoint != null)
             {
-                transform.position = Vector2.MoveTowards(transform.position, nearestPoint.position, speed * Time.deltaTime);
-
-                moveDirection = nearestPoint.position - transform.position;
-                animator.SetFloat("Horizontal", moveDirection.x);
-                animator.SetFloat("Vertical", moveDirection.y);
-                animator.SetBool("IsMoving", true);
-
-                StopAttack();
+                currentTarget = nearestPoint; // Guardar el punto actual
+                occupiedPoints.Add(nearestPoint); // Marcarlo como ocupado
             }
+        }
 
-            else    // Si la distancia es 0, atacar
-            {
-                //occupiedPoints.Add(nearestPoint);   // nearestPoint está ocupado        ??????????????
-                animator.SetBool("IsMoving", false);
-                Attack();
-            }
+        if (currentTarget == null) return;
 
-        //else  (si que esta ocupado)
-        //busca otro nearestPoint
+        if (Vector2.Distance(transform.position, currentTarget.position) > 0f)
+        {
+            // Moverse hacia el punto
+            transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
+
+            moveDirection = currentTarget.position - transform.position;
+            animator.SetFloat("Horizontal", moveDirection.x);
+            animator.SetFloat("Vertical", moveDirection.y);
+            animator.SetBool("IsMoving", true);
+
+            StopAttack();
+        }
+        else
+        {
+            // Atacar solo si ha llegado al punto
+            animator.SetBool("IsMoving", false);
+            Attack();
+        }
     }
 
-    Transform NearbyPoint(Transform[] nearbyPoints)     // Método para encontrar el punto más cercano
+    Transform NearbyPoint(Transform[] points)
     {
-        Transform nearestPoint = null;  // Punto más cercano
-        float minDistanceSqr = Mathf.Infinity;  // Distancia mínima
-        
-        foreach (Transform point in nearbyPoints)   // Recorre todos los puntos
-        {
-            if (! occupiedPoints.Contains(point)){      // Si el pt NO esta ocupado ????????????????????????????????????????????????????????????????????????????????????????????????????
+        Transform nearestPoint = null;
+        float minDistanceSqr = Mathf.Infinity;
 
-                float distanceSqr = (point.position - transform.position).sqrMagnitude; // Buscamos distancia minima entre el enemy y cada punto (por el foreach)
-                if (distanceSqr < minDistanceSqr)   // Si la distancia de este punto es menor a la mínima que habia con los puntos anteriores
-                {
-                    minDistanceSqr = distanceSqr;   // Actualiza la distancia mínima
-                    nearestPoint = point;   // Guarda el punto más cercano
-                }
+        foreach (Transform point in points)
+        {
+            if (occupiedPoints.Contains(point)) continue; // Saltar los puntos ocupados
+
+            float distanceSqr = (point.position - transform.position).sqrMagnitude;
+            if (distanceSqr < minDistanceSqr)
+            {
+                minDistanceSqr = distanceSqr;
+                nearestPoint = point;
             }
         }
         return nearestPoint;
     }
-    
+
     //---------------------------------- ATAQUE ----------------------------------------------
-    private void Attack()   // Método para atacar
+    private void Attack()
     {
-        if (!hasAttacked) // Verifica si ya ha atacado
+        if (!hasAttacked)
         {
             AttackDirection();
             animator.SetBool("Attack", true);
             StartCoroutine(ApplyDamageOverTime());
-            hasAttacked = true; // Marca que ya ha atacado
+            hasAttacked = true;
         }
     }
 
-    private void StopAttack()   // Método para detener el ataque
+    private void StopAttack()
     {
         isAttacking = false;
         animator.SetBool("Attack", false);
         hasAttacked = false;
         StopCoroutine(ApplyDamageOverTime());
+
+        // Cuando el enemigo deja de atacar, liberar el punto ocupado
+        if (currentTarget != null)
+        {
+            occupiedPoints.Remove(currentTarget);
+            currentTarget = null; // Restablecer el punto actual
+        }
     }
 
-    private IEnumerator ApplyDamageOverTime()   // Método para aplicar daño por tiempo
+    private IEnumerator ApplyDamageOverTime()
     {
         isAttacking = true;
         while (isAttacking)
