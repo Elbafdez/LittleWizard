@@ -60,12 +60,11 @@ public class Player : MonoBehaviour
             transform.position *= -1;
             roomGenerator.NewRoom();
         }
-        /*
+        
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Vidas");
             gameManager.ReducirVida();
         }
-        */
     }
 }

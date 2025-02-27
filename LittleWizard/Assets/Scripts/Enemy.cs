@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
 
-        speed = Random.Range(1.3f, 1.7f);
+        speed = Random.Range(1.2f, 1.7f);
 
         // Obtener los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint");
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
     private void Follow()
     {
         // Verificar si el enemigo ya tiene un objetivo y si el jugador está cerca
-        if (currentTarget == null || Vector2.Distance(transform.position, player.position) > 2f) 
+        if (currentTarget == null || Vector2.Distance(transform.position, player.position) > 1.5f) 
         {
             // Buscar un nuevo punto cercano
             Transform nearestPoint = NearbyPoint(nearbyPoints);

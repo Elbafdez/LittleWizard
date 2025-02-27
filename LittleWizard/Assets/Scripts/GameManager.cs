@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     private int playerLives = 6;
     public string Game;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject gameOver;
+    public GameObject player;
+    public GameObject gameOver;
+    public MusicManager musicManager;
     [SerializeField] public GameObject[] hearts;
 
     void Update()
@@ -17,12 +18,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(player);
             Time.timeScale = 0;
-            gameOver.SetActive(true);
+            GameOver();
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Time.timeScale = 1;
-                SceneManager.LoadScene(Game);
+                RestartGame();
             }
         }
     }
@@ -32,16 +32,32 @@ public class GameManager : MonoBehaviour
         playerLives--;
         Debug.Log("Vidas: " + playerLives);
 
-        if (playerLives <= 0)
-        {
-            gameOver.SetActive(true);
-        }
-
         RestarVidaUI(); // Restar vida en la UI
     }
 
     private void RestarVidaUI()
     {
         hearts[playerLives].SetActive(false);
+    }
+
+    private void GameOver()
+    {
+        gameOver.SetActive(true);
+
+        if (musicManager != null)
+        {
+            musicManager.StopMusic();
+        }
+    }
+
+    private void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(Game);
+
+        if (musicManager != null)
+        {
+            musicManager.RestartMusic();
+        }
     }
 }

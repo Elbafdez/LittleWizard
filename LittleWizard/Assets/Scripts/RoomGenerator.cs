@@ -105,7 +105,7 @@ public class RoomGenerator : MonoBehaviour
 
     //-------------------------------- ENEMIGOS ------------------------------------------------
 
-    public int GetEnemyCount()     // Método que devuelve un número aleatorio de enemigos a spawnear------------------------------ NO VA --------------------------------
+    public int GetEnemyCount()     // Método que devuelve un número aleatorio de enemigos a spawnear
     {
         // Calcular progresivamente el mínimo y máximo de enemigos hasta llegar al límite
         int dynamicMin = (int)Mathf.Lerp(startMinEnemies, finalMinEnemies, (float)currentRoom / roomsUntilMax);
@@ -117,7 +117,7 @@ public class RoomGenerator : MonoBehaviour
     private void SpawnEnemies(int nEnemies)    // Método que spawneará enemigos en la habitación
     {
         int spawnedEnemies = 0;
-        int maxAttempts = 100; // Numero max. de busqueda de pt. de spawn (para evitar bucles infinitos)
+        int maxAttempts = 100;  // Numero max. de busqueda de pt. de spawn (para evitar bucles infinitos)
         int attempts = 0;
 
         while (spawnedEnemies < nEnemies && attempts < maxAttempts)
@@ -144,7 +144,7 @@ public class RoomGenerator : MonoBehaviour
         bool isValid = true;
         
         // Verifica la distancia con el jugador
-        if (Vector2.Distance(spawnPoint, player.transform.position) < playerRadius)     // NO SE ESTA COMPROBANDO
+        if (Vector2.Distance(spawnPoint, player.transform.position) < playerRadius)
         {
             isValid = false; // Demasiado cerca del jugador
         }
