@@ -16,15 +16,17 @@ public class Enemy : MonoBehaviour
     private bool hasAttacked = false; 
     private bool isAttacking = false;
     private Transform currentTarget = null; // Guarda el punto actual donde el enemigo está atacando
+    private bool colliderBug;
+    private bool isRepositioning = false; // Para evitar cambios bruscos de target
 
-    void Start()
+    void Start()    // Se genera una vez por enemigo
     {
         animator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
 
-        speed = Random.Range(1.3f, 1.8f);
+        speed = Random.Range(1.3f, 1.7f);
 
         // Obtener los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint");
@@ -38,18 +40,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (player == null) return;     // Cuando el player muera
 
         Follow();
 
-        if (lives <= 0)
+        if (lives <= 0)     // Cuando el enemigo muera
         {
+            ReleasePoint();     // Libera el punto al morir
             roomGenerator.EnemigoDerrotado();
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)     // Daño de la magic ball
     {
         if (other.gameObject.tag == "MagicBall")
         {
@@ -60,21 +63,24 @@ public class Enemy : MonoBehaviour
     //---------------------------------- MOVIMIENTO ----------------------------------------------
     private void Follow()
     {
+        // Verificar si el enemigo ya tiene un objetivo y si el jugador está cerca
         if (currentTarget == null || Vector2.Distance(transform.position, player.position) > 2f) 
         {
-            // Si no hay punto asignado o el jugador se aleja, buscar otro punto
+            // Buscar un nuevo punto cercano
             Transform nearestPoint = NearbyPoint(nearbyPoints);
 
             if (nearestPoint != null)
             {
-                currentTarget = nearestPoint; // Guardar el punto actual
-                occupiedPoints.Add(nearestPoint); // Marcarlo como ocupado
+                ReleasePoint(); // Liberar el punto anterior antes de asignar uno nuevo
+                currentTarget = nearestPoint;
+                occupiedPoints.Add(nearestPoint);
             }
         }
 
+        // Si no hay un punto válido, salir
         if (currentTarget == null) return;
 
-        if (Vector2.Distance(transform.position, currentTarget.position) > 0f)
+        if (Vector2.Distance(transform.position, currentTarget.position) > 0.1f)
         {
             // Moverse hacia el punto
             transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
@@ -113,10 +119,52 @@ public class Enemy : MonoBehaviour
         return nearestPoint;
     }
 
+    //---------------------------------- REPOSICIÓN ----------------------------------------------
+
+    void OnCollisionEnter2D(Collision2D collision)  // Solucion para daño repetitivo
+    {
+        if (collision.gameObject.CompareTag("Enemy") && !isRepositioning)
+        {
+            colliderBug = true;
+            StartCoroutine(RepositionAfterCollision());
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)   // Solucion para daño repetitivo
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            colliderBug = false;
+        }
+    }
+
+    private IEnumerator RepositionAfterCollision()
+    {
+        isRepositioning = true;
+        ReleasePoint();
+        yield return new WaitForSeconds(0.5f);
+        currentTarget = NearbyPoint(nearbyPoints);
+
+        if (currentTarget != null)
+        {
+            occupiedPoints.Add(currentTarget);
+        }
+        isRepositioning = false;
+    }
+
+    private void ReleasePoint()
+    {
+        if (currentTarget != null)
+        {
+            occupiedPoints.Remove(currentTarget);
+            currentTarget = null;
+        }
+    }
+
     //---------------------------------- ATAQUE ----------------------------------------------
+
     private void Attack()
     {
-        if (!hasAttacked)
+        if (!hasAttacked && !colliderBug)
         {
             AttackDirection();
             animator.SetBool("Attack", true);
@@ -131,13 +179,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Attack", false);
         hasAttacked = false;
         StopCoroutine(ApplyDamageOverTime());
-
-        // Cuando el enemigo deja de atacar, liberar el punto ocupado
-        if (currentTarget != null)
-        {
-            occupiedPoints.Remove(currentTarget);
-            currentTarget = null; // Restablecer el punto actual
-        }
+        ReleasePoint();
     }
 
     private IEnumerator ApplyDamageOverTime()
@@ -146,7 +188,7 @@ public class Enemy : MonoBehaviour
         while (isAttacking)
         {
             gameManager.ReducirVida();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
     }
 
