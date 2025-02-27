@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public void EnemyNumerator()
     {
         nRoomText.text = string.Format("Room: " + "{0:0}", roomGenerator.currentRoom);
-        nEnemyText.text = string.Format("Enemies: " + "{0:0000}", roomGenerator.enemigosDerrotados);
+        nEnemyText.text = string.Format("Enemies: " + "{0:000}", roomGenerator.enemigosDerrotados);
     }
 
     public void ReducirVida()

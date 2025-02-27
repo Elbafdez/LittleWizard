@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("OnCollisionEnter2D " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Door"))
         {
             Debug.Log("Cambio de habitación");
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("CHOCO");
+            Debug.Log("CHOCO CON ENEMIGO");
             gameManager.ReducirVida();
         }
     }
