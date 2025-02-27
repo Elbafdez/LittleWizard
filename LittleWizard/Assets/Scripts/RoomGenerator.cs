@@ -24,7 +24,6 @@ public class RoomGenerator : MonoBehaviour
     private int currentRoom = 0; // Número de habitación actual
     private int nEnemies = 0;
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
-
     private List<Vector2> spawnPositions = new List<Vector2>(); // Puntos de spawn de enemigos
 
     void Start()
@@ -117,7 +116,7 @@ public class RoomGenerator : MonoBehaviour
     private void SpawnEnemies(int nEnemies)    // Método que spawneará enemigos en la habitación
     {
         int spawnedEnemies = 0;
-        int maxAttempts = 100;  // Numero max. de busqueda de pt. de spawn (para evitar bucles infinitos)
+        int maxAttempts = 1000;  // Numero max. de busqueda de pt. de spawn (para evitar bucles infinitos)
         int attempts = 0;
 
         while (spawnedEnemies < nEnemies && attempts < maxAttempts)
@@ -139,7 +138,7 @@ public class RoomGenerator : MonoBehaviour
 
     private bool IsValidSpawn(Vector2 spawnPoint)     // Método que verifica si una posición no coincide con el mago ni con el resto de posiciones de spawn
     {
-        float playerRadius = 1.5f; // Radio de distancia minima al jugador
+        float playerRadius = 2f; // Radio de distancia minima al jugador
         float ememySpawnRadius = 1f; // Distancia mínima entre enemigos
         bool isValid = true;
         
