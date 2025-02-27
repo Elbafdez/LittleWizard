@@ -10,6 +10,7 @@ public class RoomGenerator : MonoBehaviour
     public Sprite spritePuertasAbiertas;
     private SpriteRenderer spriteRenderer;
     private int enemigosRestantes; // Número de enemigos actuales en la habitación
+    public int enemigosDerrotados; // Número de enemigos derrotados
     [SerializeField] private GameObject[] Doors;   // Referencia a las puertas
     [SerializeField] private SpriteRenderer blackScreen; // Referencia al SpriteRenderer de la pantalla negra
     
@@ -21,7 +22,7 @@ public class RoomGenerator : MonoBehaviour
     private int finalMinEnemies = 4; // Min enemigos en habitaciones avanzadas
     private int finalMaxEnemies = 5; // Max enemigos en habitaciones avanzadas
     private int roomsUntilMax = 8; // Número de habitaciones hasta alcanzar el límite
-    private int currentRoom = 0; // Número de habitación actual
+    public int currentRoom = 0; // Número de habitación actual
     private int nEnemies = 0;
     [SerializeField] private float xMin, xMax, yMin, yMax; // Límites de la habitación
     private List<Vector2> spawnPositions = new List<Vector2>(); // Puntos de spawn de enemigos
@@ -90,6 +91,7 @@ public class RoomGenerator : MonoBehaviour
     public void EnemigoDerrotado()      // Método que se llama cuando un enemigo es derrotado
     {
         enemigosRestantes--;
+        enemigosDerrotados++;
 
         if (enemigosRestantes <= 0)
         {

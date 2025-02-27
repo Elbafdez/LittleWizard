@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private int playerLives = 6;
     public string Game;
+    public RoomGenerator roomGenerator;
+    public TextMeshProUGUI nRoomText;   // Texto N Room
+    public TextMeshProUGUI nEnemyText;   // Texto N Enemies
     public GameObject player;
     public GameObject gameOver;
     public MusicManager musicManager;
     [SerializeField] public GameObject[] hearts;
+
+    void Start()
+    {
+        roomGenerator = FindObjectOfType<RoomGenerator>();  
+    }
 
     void Update()
     {
@@ -25,6 +34,13 @@ public class GameManager : MonoBehaviour
                 RestartGame();
             }
         }
+        EnemyNumerator();
+    }
+
+    public void EnemyNumerator()
+    {
+        nRoomText.text = string.Format("Room: " + "{0:0}", roomGenerator.currentRoom);
+        nEnemyText.text = string.Format("Enemies: " + "{0:0000}", roomGenerator.enemigosDerrotados);
     }
 
     public void ReducirVida()

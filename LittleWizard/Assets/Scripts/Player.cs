@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Vidas");
+            Debug.Log("CHOCO");
             gameManager.ReducirVida();
         }
     }
