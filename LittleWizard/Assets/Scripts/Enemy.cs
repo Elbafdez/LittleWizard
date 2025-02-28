@@ -14,11 +14,12 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private Vector2 moveDirection = Vector2.down;
     private Transform player;
-    private bool hasAttacked = false; 
+    public bool hasAttacked = false; 
     private bool isAttacking = false;
     private Transform currentTarget = null; // Guarda el punto actual donde el enemigo está atacando
     private bool colliderBug;
     private bool isRepositioning = false; // Para evitar cambios bruscos de target
+    private TrailRenderer trailRenderer;       // Rastro
 
     void Start()    // Se genera una vez por enemigo
     {
@@ -27,6 +28,9 @@ public class Enemy : MonoBehaviour
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
+        trailRenderer = GetComponent<TrailRenderer>();
+        
+        trailRenderer.enabled = false; // Desactivar el rastro al inicio
 
         speed = Random.Range(1.2f, 1.8f);
 
@@ -59,15 +63,19 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "MagicBall")
         {
             lives--;
-            //Cambia color
+            // IsCold
+            speed -= 0.3f;
             spriteRenderer.color = new Color(0.3f, 0.7f, 1);
-            Invoke("ResetColor", 0.5f);
+            //trailRenderer.enabled = true;  // Activar rastro ????????????????????
+            Invoke("IsCold", 0.5f);
         }
     }
 
-    private void ResetColor()
+    private void IsCold()
     {
         spriteRenderer.color = Color.white; // Restaurar el color original
+        speed += 0.3f;
+        trailRenderer.enabled = false;  // Desactivar el rastro después de 1 segundo
     }
 
     //---------------------------------- MOVIMIENTO ----------------------------------------------
