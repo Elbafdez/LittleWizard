@@ -23,13 +23,18 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))       // Salir del juego
+        {
+            Application.Quit();
+        }
+        
         if (playerLives <= 0)
         {
             Destroy(player);
             Time.timeScale = 0;
             GameOver();
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))       // Resetear juego
             {
                 RestartGame();
             }
