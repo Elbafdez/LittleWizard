@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26da69316a628ff4ba16e05f0a575342
+guid: 353bf53e03ccad5499cdc22f8c02cacb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AnimacionInicio_0
+      name: StartAnimation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef0af1b569108af4e92fb7e7d92e310b
-      internalID: 33358027
+      spriteID: aaf3d78cb7c12c645b5b2b4640985a31
+      internalID: 361222260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_1
+      name: StartAnimation_1
       rect:
         serializedVersion: 2
         x: 710
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 012be5714fc65a34e834a862cafd1be3
-      internalID: -1326907842
+      spriteID: 3d5a70411d7aee54e8d69e3bd94b67b3
+      internalID: -1232844995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_2
+      name: StartAnimation_2
       rect:
         serializedVersion: 2
         x: 1420
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3fbf08dd6078d54f95d34400e344fa9
-      internalID: 263666321
+      spriteID: edcfa52ca8012f045904d11dbcbc5f16
+      internalID: -254239618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_3
+      name: StartAnimation_3
       rect:
         serializedVersion: 2
         x: 2130
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72570c6856cb90840941cecb84ddedda
-      internalID: -551131050
+      spriteID: 31aa44905c21c694dbfd19364a33cbfd
+      internalID: -1293711761
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_4
+      name: StartAnimation_4
       rect:
         serializedVersion: 2
         x: 2840
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de1d9caf26955fe419b891779da0f9e5
-      internalID: -1759556289
+      spriteID: 7a2cf801e64b357478e178e9fc8e53cd
+      internalID: 290917713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_5
+      name: StartAnimation_5
       rect:
         serializedVersion: 2
         x: 3550
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3d85bca1dd05034d86a539109fbf4ee
-      internalID: -519064622
+      spriteID: f822c5b307ce2854c90d4ccb1354a5ff
+      internalID: 1358561342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_6
+      name: StartAnimation_6
       rect:
         serializedVersion: 2
         x: 4260
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1b87bac09ecff147a294171fe7b05b9
-      internalID: 436543286
+      spriteID: ae006500d1e925249bf6d8f5c6f00482
+      internalID: -887310802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_7
+      name: StartAnimation_7
       rect:
         serializedVersion: 2
         x: 4970
@@ -258,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab7a3c4cf98fed340b04b0f2255829b9
-      internalID: -477392073
+      spriteID: d95d7b7cb034da04eb05406b944aa49e
+      internalID: 1514206893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_8
+      name: StartAnimation_8
       rect:
         serializedVersion: 2
         x: 5680
@@ -279,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7591c72aba2fc0840a8a582a7c4e6941
-      internalID: -1592696921
+      spriteID: e7138c48a81c77c499cd6fc55889c4fe
+      internalID: 113381924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_9
+      name: StartAnimation_9
       rect:
         serializedVersion: 2
         x: 6390
@@ -300,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ab4a4ac82b68040afd313996ea0ba6
-      internalID: -852879821
+      spriteID: 7ae8bbc5d77df4749b7a9b3c171082ee
+      internalID: 1672087802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_10
+      name: StartAnimation_10
       rect:
         serializedVersion: 2
         x: 7100
@@ -321,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ce1cc4ce10ba5c449106c503352a714
-      internalID: 1016578658
+      spriteID: 6114ed8eeffb22c4c93ed19954772fd6
+      internalID: -182576759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_11
+      name: StartAnimation_11
       rect:
         serializedVersion: 2
         x: 7810
@@ -342,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e353cf7bb737e7e459e271c8d9d301fb
-      internalID: -883891423
+      spriteID: 327f9bf5b15f9724a9986b618988ba81
+      internalID: -2107483610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_12
+      name: StartAnimation_12
       rect:
         serializedVersion: 2
         x: 8520
@@ -363,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f7e8b173d86a934b906e9cb62f7ab61
-      internalID: -1434807200
+      spriteID: 2ec018990307e5046afea05d58a8f63a
+      internalID: 1338077329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_13
+      name: StartAnimation_13
       rect:
         serializedVersion: 2
         x: 9230
@@ -384,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e3b9985481e86e43a0ed7fedd8ffab3
-      internalID: -2089469043
+      spriteID: a6c78b38d1ce01248b674fd1a2de1c5b
+      internalID: -225644699
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_14
+      name: StartAnimation_14
       rect:
         serializedVersion: 2
         x: 9940
@@ -405,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ee74a815fcae684ca367dc0e8d7b142
-      internalID: 48449453
+      spriteID: bc71aba466b2b01429a060b2af9b5dc5
+      internalID: 608138913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_15
+      name: StartAnimation_15
       rect:
         serializedVersion: 2
         x: 10650
@@ -426,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 904b85b457094f74d8c27a59c942adb9
-      internalID: 1371751349
+      spriteID: 80bef5aa0db91604298cec0e98c53a01
+      internalID: 1664530123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_16
+      name: StartAnimation_16
       rect:
         serializedVersion: 2
         x: 11360
@@ -447,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86aef40c3c153ca4384aa555dbcc15a4
-      internalID: -346308831
+      spriteID: aafdb97286755304898cd320902a0b1b
+      internalID: 1429526043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_17
+      name: StartAnimation_17
       rect:
         serializedVersion: 2
         x: 12070
@@ -468,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0e13614c47b4924bb8b31aa51fc9e83
-      internalID: -1068841476
+      spriteID: 11e4879c4d355bd49a812e8fb6aff19a
+      internalID: 1918625351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_18
+      name: StartAnimation_18
       rect:
         serializedVersion: 2
         x: 12780
@@ -489,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5fbc70af2de2d545806d1474b0f7fc6
-      internalID: 796571684
+      spriteID: edadc1c5921af8a43b151d3c23e282b2
+      internalID: -1873006750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_19
+      name: StartAnimation_19
       rect:
         serializedVersion: 2
         x: 13490
@@ -510,14 +510,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22a35ec6fbedf9743a2287466e96745f
-      internalID: 1860622620
+      spriteID: d8c97ca0b1c402a4c991f0b1d45eac08
+      internalID: -1590571309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimacionInicio_20
+      name: StartAnimation_20
       rect:
         serializedVersion: 2
         x: 14200
@@ -531,8 +531,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71c288e43839025458dbc9df2d73305a
-      internalID: -1229823365
+      spriteID: 21008a0572615074aa0ae3eca179eb51
+      internalID: 252568317
       vertices: []
       indices: 
       edges: []
@@ -548,27 +548,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AnimacionInicio_0: 33358027
-      AnimacionInicio_1: -1326907842
-      AnimacionInicio_10: 1016578658
-      AnimacionInicio_11: -883891423
-      AnimacionInicio_12: -1434807200
-      AnimacionInicio_13: -2089469043
-      AnimacionInicio_14: 48449453
-      AnimacionInicio_15: 1371751349
-      AnimacionInicio_16: -346308831
-      AnimacionInicio_17: -1068841476
-      AnimacionInicio_18: 796571684
-      AnimacionInicio_19: 1860622620
-      AnimacionInicio_2: 263666321
-      AnimacionInicio_20: -1229823365
-      AnimacionInicio_3: -551131050
-      AnimacionInicio_4: -1759556289
-      AnimacionInicio_5: -519064622
-      AnimacionInicio_6: 436543286
-      AnimacionInicio_7: -477392073
-      AnimacionInicio_8: -1592696921
-      AnimacionInicio_9: -852879821
+      StartAnimation_0: 361222260
+      StartAnimation_1: -1232844995
+      StartAnimation_10: -182576759
+      StartAnimation_11: -2107483610
+      StartAnimation_12: 1338077329
+      StartAnimation_13: -225644699
+      StartAnimation_14: 608138913
+      StartAnimation_15: 1664530123
+      StartAnimation_16: 1429526043
+      StartAnimation_17: 1918625351
+      StartAnimation_18: -1873006750
+      StartAnimation_19: -1590571309
+      StartAnimation_2: -254239618
+      StartAnimation_20: 252568317
+      StartAnimation_3: -1293711761
+      StartAnimation_4: 290917713
+      StartAnimation_5: 1358561342
+      StartAnimation_6: -887310802
+      StartAnimation_7: 1514206893
+      StartAnimation_8: 113381924
+      StartAnimation_9: 1672087802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
