@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private int playerLives = 6;
     public string Game;
     public RoomGenerator roomGenerator;
+    public SpriteRenderer playerSpriteRenderer;
     public TextMeshProUGUI nRoomText;   // Texto N Room
     public TextMeshProUGUI nEnemyText;   // Texto N Enemies
     public GameObject player;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        roomGenerator = FindObjectOfType<RoomGenerator>();  
+        roomGenerator = FindObjectOfType<RoomGenerator>();
     }
 
     void Update()
@@ -53,7 +54,16 @@ public class GameManager : MonoBehaviour
         playerLives--;
         Debug.Log("Vidas: " + playerLives);
 
+        //Cambio de color
+        playerSpriteRenderer.color = new Color(1f, 0.3f, 0.3f);
+        Invoke("ResetColor", 0.5f);
+
         RestarVidaUI(); // Restar vida en la UI
+    }
+
+    private void ResetColor()
+    {
+        playerSpriteRenderer.color = Color.white; // Restaurar el color original
     }
 
     private void RestarVidaUI()

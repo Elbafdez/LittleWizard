@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private RoomGenerator roomGenerator;
     private static List<Transform> occupiedPoints = new List<Transform>();
     private Transform[] nearbyPoints;
+    private SpriteRenderer spriteRenderer;
     private GameManager gameManager;
     private float speed;
     private int lives = 3;
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Start()    // Se genera una vez por enemigo
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -57,7 +59,15 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "MagicBall")
         {
             lives--;
+            //Cambia color
+            spriteRenderer.color = new Color(0.3f, 0.7f, 1);
+            Invoke("ResetColor", 0.5f);
         }
+    }
+
+    private void ResetColor()
+    {
+        spriteRenderer.color = Color.white; // Restaurar el color original
     }
 
     //---------------------------------- MOVIMIENTO ----------------------------------------------

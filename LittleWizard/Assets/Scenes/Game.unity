@@ -812,6 +812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Game: Game
   roomGenerator: {fileID: 1012553032}
+  playerSpriteRenderer: {fileID: 1142345358}
   nRoomText: {fileID: 1859906553}
   nEnemyText: {fileID: 2014283970}
   player: {fileID: 1142345356}
@@ -1101,7 +1102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1040549151, guid: bd76230bc6f43d14db695aeb155fb9c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
