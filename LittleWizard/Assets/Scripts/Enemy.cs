@@ -134,6 +134,11 @@ public class Enemy : MonoBehaviour
                 nearestPoint = point;
             }
         }
+        if(nearestPoint==null)
+        {
+            Debug.Log("No hay puntos disponibles");
+
+        }
         return nearestPoint;
     }
 
