@@ -201,7 +201,7 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
         animator.SetBool("Attack", false);
         hasAttacked = false;
-        StopCoroutine(ApplyDamageOverTime());
+        //StopCoroutine(ApplyDamageOverTime());
         ReleasePoint();
     }
 

@@ -2268,7 +2268,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1455157171}
-  - component: {fileID: 1455157172}
   m_Layer: 8
   m_Name: PointAttackL
   m_TagString: NearbyPoint
@@ -2291,18 +2290,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1142345357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1455157172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455157170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f213899b751bf7845a41ce872387e910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1533392680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,7 +2928,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1735743384}
-  - component: {fileID: 1735743385}
   m_Layer: 8
   m_Name: PointAttackR
   m_TagString: NearbyPoint
@@ -2964,18 +2950,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1142345357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1735743385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735743383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f213899b751bf7845a41ce872387e910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1798991787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3410,7 +3384,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1876332295}
-  - component: {fileID: 1876332296}
   m_Layer: 8
   m_Name: PointAttackD
   m_TagString: NearbyPoint
@@ -3433,18 +3406,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1142345357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1876332296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876332294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f213899b751bf7845a41ce872387e910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1937453801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,7 +3663,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2051949575}
-  - component: {fileID: 2051949576}
   m_Layer: 8
   m_Name: PointAttackU
   m_TagString: NearbyPoint
@@ -3725,18 +3685,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1142345357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2051949576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051949574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f213899b751bf7845a41ce872387e910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
