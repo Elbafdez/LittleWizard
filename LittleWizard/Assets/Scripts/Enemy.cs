@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
 
-        speed = Random.Range(1.2f, 1.6f);
+        speed = Random.Range(1.2f, 1.8f);
 
         // Obtener los NearbyPoints
         GameObject[] points = GameObject.FindGameObjectsWithTag("NearbyPoint");
