@@ -26,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
 
         Vector3 direccion = (mousePosition - scepter.position).normalized;  // Obtenemos la dirección hacia la que apuntamos
 
-        GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la bala
-        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la bala
+        GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la bola
+        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la bola
     }
 }
