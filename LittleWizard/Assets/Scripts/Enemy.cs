@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
     private RoomGenerator roomGenerator;
     private static List<Transform> occupiedPoints = new List<Transform>();
     private Transform[] nearbyPoints;
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
     private Transform currentTarget = null; // Guarda el punto actual donde el enemigo está atacando
     private bool colliderBug;
     private bool isRepositioning = false; // Para evitar cambios bruscos de target
-    private TrailRenderer trailRenderer;       // Rastro
+    private bool isDamageCoroutineRunning = false; // Nueva variable
 
     void Start()    // Se genera una vez por enemigo
     {
@@ -28,9 +29,6 @@ public class Enemy : MonoBehaviour
         roomGenerator = FindObjectOfType<RoomGenerator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = FindObjectOfType<GameManager>();
-        trailRenderer = GetComponent<TrailRenderer>();
-        
-        trailRenderer.enabled = false; // Desactivar el rastro al inicio
 
         speed = Random.Range(1.2f, 1.8f);
 
@@ -63,10 +61,8 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.tag == "MagicBall")
         {
             lives--;
-            // IsCold
-            speed -= 0.3f;
+            speed -= 0.5f;
             spriteRenderer.color = new Color(0.3f, 0.7f, 1);
-            //trailRenderer.enabled = true;  // Activar rastro ????????????????????
             Invoke("IsCold", 0.5f);
         }
     }
@@ -74,8 +70,7 @@ public class Enemy : MonoBehaviour
     private void IsCold()
     {
         spriteRenderer.color = Color.white; // Restaurar el color original
-        speed += 0.3f;
-        trailRenderer.enabled = false;  // Desactivar el rastro después de 1 segundo
+        speed += 0.5f;
     }
 
     //---------------------------------- MOVIMIENTO ----------------------------------------------
@@ -98,7 +93,7 @@ public class Enemy : MonoBehaviour
         // Si no hay un punto válido, salir
         if (currentTarget == null) return;
 
-        if (Vector2.Distance(transform.position, currentTarget.position) > 0.1f)
+        if (Vector2.Distance(transform.position, currentTarget.position) > 0.1f)    // Si el enemigo no ha llegado al punto
         {
             // Moverse hacia el punto
             transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
@@ -110,7 +105,7 @@ public class Enemy : MonoBehaviour
 
             StopAttack();
         }
-        else
+        else    // Si el enemigo ha llegado al punto
         {
             // Atacar solo si ha llegado al punto
             animator.SetBool("IsMoving", false);
@@ -160,7 +155,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator RepositionAfterCollision()
+    private IEnumerator RepositionAfterCollision()  // Reposiciona al enemigo después de una colisión
     {
         isRepositioning = true;
         ReleasePoint();
@@ -174,7 +169,7 @@ public class Enemy : MonoBehaviour
         isRepositioning = false;
     }
 
-    private void ReleasePoint()
+    private void ReleasePoint() // Libera el punto ocupado
     {
         if (currentTarget != null)
         {
@@ -191,7 +186,12 @@ public class Enemy : MonoBehaviour
         {
             AttackDirection();
             animator.SetBool("Attack", true);
-            StartCoroutine(ApplyDamageOverTime());
+            
+            if (!isDamageCoroutineRunning) // Solo iniciar si no está corriendo
+            {
+                StartCoroutine(ApplyDamageOverTime());
+            }
+
             hasAttacked = true;
         }
     }
@@ -201,18 +201,21 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
         animator.SetBool("Attack", false);
         hasAttacked = false;
-        //StopCoroutine(ApplyDamageOverTime());
         ReleasePoint();
     }
 
     private IEnumerator ApplyDamageOverTime()
     {
+        isDamageCoroutineRunning = true;
         isAttacking = true;
+
         while (isAttacking)
         {
             gameManager.ReducirVida();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
         }
+
+        isDamageCoroutineRunning = false;
     }
 
     private void AttackDirection()
