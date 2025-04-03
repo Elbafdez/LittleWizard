@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;  // Necesario para usar corrutinas
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -7,7 +6,6 @@ public class PlayerShooting : MonoBehaviour
     public Transform scepter;
     private float magicBallSpeed = 2f;
     private float fireRate = 0.8f;
-
     private float nextFireTime = 0f;
 
     void Update()
@@ -26,7 +24,7 @@ public class PlayerShooting : MonoBehaviour
 
         Vector3 direccion = (mousePosition - scepter.position).normalized;  // Obtenemos la dirección hacia la que apuntamos
 
-        GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la bola
-        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la bola
+        GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la MagicBall
+        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la MagicBall
     }
 }
