@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         {
             lives--;
             speed -= 0.5f;
-            spriteRenderer.color = new Color(0.3f, 0.7f, 1);
+            spriteRenderer.color = new Color(1f, 0.3f, 0.3f);
             Invoke("IsCold", 0.5f);
         }
     }
