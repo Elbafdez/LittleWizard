@@ -3,14 +3,16 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public GameObject magicBall;
+    public Player player;
     public Transform scepter;
     private float magicBallSpeed = 2f;
     private float fireRate = 0.8f;
     private float nextFireTime = 0f;
+    
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextFireTime)
         {
             Disparar();
             nextFireTime = Time.time + fireRate;
@@ -18,13 +20,15 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void Disparar()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // Convertimos la posición del mouse a coordenadas del mundo
-        mousePosition.z = 0f;
+    {     
+        //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);    // Convertimos la posición del mouse a coordenadas del mundo
+        //mousePosition.z = 0f;
 
-        Vector3 direccion = (mousePosition - scepter.position).normalized;  // Obtenemos la dirección hacia la que apuntamos
-
+        //Vector3 direccion = (mousePosition - scepter.position).normalized;  // Obtenemos la dirección hacia la que apuntamos
         GameObject bala = Instantiate(magicBall, scepter.position, Quaternion.identity);    // Creamos la MagicBall
-        bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la MagicBall
+
+        //bala.GetComponent<Rigidbody2D>().velocity = direccion * magicBallSpeed;  // Aplicamos velocidad a la MagicBall
+
+        bala.GetComponent<Rigidbody2D>().velocity = player.lastMoveDirection * magicBallSpeed;  // Aplicamos velocidad a la MagicBall
     }
 }

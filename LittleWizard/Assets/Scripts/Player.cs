@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     private Animator playeranimator;
     private float speed = 2f;
     private Rigidbody2D rbplayer;
-    private Vector2 moveImput;
-    private Vector2 lastMoveDirection = Vector2.down;
+    public Vector2 moveImput;
+    public Vector2 lastMoveDirection = Vector2.down;
 
     void Start()
     {
@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
         playeranimator = GetComponent<Animator>();
         roomGenerator = FindObjectOfType<RoomGenerator>();
     }
-
+    public Vector2 getMoveImput()
+    {
+        return lastMoveDirection;
+    }
     void Update()
     {
         PlayerMovement();
